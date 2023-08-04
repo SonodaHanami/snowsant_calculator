@@ -1,0 +1,869 @@
+<html>
+<head>
+    <title>雪雉小店终极策略</title>
+    <style>
+        body {
+            padding-top: 10px;
+            padding-left: 10px;
+            padding-right: 10px;
+            color: #FFF;
+            text-shadow: -2px -2px #000, -2px -1px #000, -2px 0 #000, -2px 1px #000, -2px 2px #000, -1px -2px #000, -1px -1px #000, -1px 0 #000, -1px 1px #000, -1px 2px #000, 0 -2px #000, 0 -1px #000, 0 0 #000, 0 1px #000, 0 2px #000, 1px -2px #000, 1px -1px #000, 1px 0 #000, 1px 1px #000, 1px 2px #000, 2px -2px #000, 2px -1px #000, 2px 0 #000, 2px 1px #000, 2px 2px #000;
+            text-align: center;
+        }
+
+        #div_overlay_container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 3044248;
+            background-color: #000000EE;
+        }
+
+        .div_container {
+            margin-top: 20px;
+            margin-left: 20px;
+            margin-right: 20px;
+        }
+
+        a:link, a:visited {
+            color: #FFA500;
+        }
+
+        textarea {
+            width: 100%;
+            resize: none;
+        }
+
+        table {
+            border-collapse: collapse;
+        }
+
+        .table_header {
+            width: 100%;
+            text-align: left;
+            font-size: 1.5em;
+            table-layout: fixed;
+        }
+
+        .table_header th {
+            font-size: 2em;
+        }
+
+        .table_text {
+            width: 100%;
+            text-align: left;
+            /* table-layout: fixed; */
+        }
+
+        .table_text tr {
+            height: 75px;
+        }
+
+        .table_text th {
+            font-size: 2em;
+            padding: 10px;
+        }
+
+        .table_text td {
+            height: 20px;
+            /* width: 50%; */
+            font-size: 1.5em;
+        }
+
+        .table_text input {
+            /* height: 75px; */
+            width: 80%;
+            /* font-size: 1.5em; */
+        }
+
+        #table_cost {
+            color: #FFF;
+        }
+
+        #tr_warning {
+            color: red;
+        }
+
+        td[id^="td_wish"], td[id^="td_cost"] {
+            border-width: 1px;
+            border-color: #AAAAAA;
+            border-top-style: solid;
+            border-bottom-style: solid;
+            border-left-style: dashed;
+            border-right-style: dashed;
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+
+        #td_cost_result {
+            border-width: 0px;
+        }
+
+        td[id^="td_cost"] span {
+            color: #FFA500;
+            margin-left: 5px;
+            margin-right: 5px;
+        }
+
+        .tr_border_bottom {
+            border-bottom: 1px solid #000;
+        }
+
+        .td_border_right {
+            border-right: 1px solid #000;
+        }
+
+        td[class="td_cost_not_paid"] {
+            background-color: #fedcba;
+        }
+
+        #div_wish_options {
+            position:absolute;
+            margin-top: 15px;
+        }
+
+        .div_button {
+            background-color: #F0F0F07F;
+            padding: 10px;
+            border-radius: 3px;
+            border-color: #000;
+            border-style: solid;
+            border-width: 1px;
+            text-align: center;
+        }
+
+        .wish_option {
+            background-color: #DDDDDD7F;
+            height: 32px;
+            padding: 3px 10px;
+            margin-top: 2px;
+            border-radius: 3px;
+            border-style: solid;
+            border-width: 1px;
+            border-color: #000;
+        }
+
+        .div_button:hover, .wish_option:hover {
+            background-color: #2B666666;
+        }
+
+        #tr_notice {
+            background-color: #ffbf92;
+        }
+
+        #td_notice {
+            width: 80%;
+            padding-left: 10px;
+        }
+
+        #td_notice_button {
+            width: 20%;
+            padding-right: 10px;
+            text-align: right;
+        }
+
+        .div_notice_button {
+            width: 50px;
+            display: inline-block;
+            background-color: #F0F0F07F;
+            padding: 10px;
+            border-radius: 3px;
+            border-color: #000;
+            border-style: solid;
+            border-width: 1px;
+            text-align: center;
+        }
+
+        .div_tag_button, .div_settings_button {
+            width: 150px;
+            display: inline-block;
+            background-color: #F0F0F07F;
+            padding: 10px;
+            border-radius: 3px;
+            border-color: #000;
+            border-style: solid;
+            border-width: 1px;
+            text-align: center;
+        }
+
+        .div_tag_button:hover {
+            outline-color: #00AAFF;
+            outline-style: solid;
+            outline-width: 3px;
+        }
+
+        .div_tag_button_enabled {
+            background-color: #00AAFF;
+        }
+
+        .div_tag_button_enabled_useless {
+            background-color: #bb5a5a;
+        }
+
+        .div_tag_button_disabled {
+            background-color: #ebeb16;
+        }
+
+        .div_tag_button_disabled_useless {
+            background-color: #76cb8b;
+        }
+
+        #td_md5 {
+            text-align: center;
+            opacity: 0;
+        }
+
+        #td_md5:hover {
+            opacity: 1;
+            background-color: #2B666666;
+        }
+    </style>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QGM58QCD7C"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-QGM58QCD7C');
+    </script>
+</head>
+
+<body>
+    <table class="table_header">
+        <tr>
+            <th colspan="2">
+                雪雉小店终极策略
+            </th>
+            <td>
+                <p>原作者：<a href="https://space.bilibili.com/246187036" target="_blank">他的十天Histensky</a></p>
+                <p>移　植：<a href="https://space.bilibili.com/533170" target="_blank">羽波</a></p>
+            </td>
+            <td>
+                <div class="div_button" onclick="location.reload();">清空（刷新）</div>
+            </td>
+        </tr>
+    </table>
+    <table class="table_text" id="table_main">
+        <tr>
+            <td colspan="9" id="td_notice_2">
+                <a href="https://www.bilibili.com/video/BV11p4y1V78k" target="_blank">【全站唯一】精确计算，极致高产！深度解析雪雉小店，附带经营策略计算器</a> 出现BUG可以私信作者 QQ交流群951454445
+            </td>
+        </tr>
+        <tr class="tr_border_bottom">
+            <td class="td_border_right">　　　　　　　　</td>
+            <th colspan="3" class="td_border_right" style="width: 25%;">
+                采购数量
+            </th>
+            <td colspan="2" class="td_border_right" style="width: 25%;">
+                <p><span style="font-size: 1.5em">打探结果</span>，未打探则填0</p>
+                <p>注意不要搞反两个对手的顺序</p>
+                <p>搞错顺序导致的收益损失自行承担</p>
+            </td>
+            <th colspan="2" class="td_border_right" style="width: 25%;">
+                定价范围
+            </th>
+            <th style="width: 25%;">
+                推荐定价和预计收益
+            </th>
+        </tr>
+        <tr>
+                <td class="td_border_right"></td>
+                <td>你</td>
+                <td>对手A</td>
+                <td class="td_border_right">对手B</td>
+                <td>对手A定价</td>
+                <td class="td_border_right">对手B定价</td>
+                <td>最低</td>
+                <td class="td_border_right">最高</td>
+        </tr>
+        <tr>
+            <th class="td_border_right">饮料</th>
+            <td><input type="number" id="drinks_0" min="0" value="0"></td>
+            <td><input type="number" id="drinks_1" min="0" value="0"></td>
+            <td class="td_border_right"><input type="number" id="drinks_2" min="0" value="0"></td>
+            <td><input type="number" id="drinksdt_0" min="0" value="0"></td>
+            <td class="td_border_right"><input type="number" id="drinksdt_1" min="0" value="0"></td>
+            <td><input type="number" id="drinksfw_0" min="0" value="45"></td>
+            <td class="td_border_right"><input type="number" id="drinksfw_1" min="0" value="55"></td>
+            <td id="Le1"></td>
+        </tr>
+        <tr>
+            <th class="td_border_right">食品</th>
+            <td><input type="number" id="foods_0" min="0" value="0"></td>
+            <td><input type="number" id="foods_1" min="0" value="0"></td>
+            <td class="td_border_right"><input type="number" id="foods_2" min="0" value="0"></td>
+            <td><input type="number" id="foodsdt_0" min="0" value="0"></td>
+            <td class="td_border_right"><input type="number" id="foodsdt_1" min="0" value="0"></td>
+            <td><input type="number" id="foodsfw_0" min="0" value="35"></td>
+            <td class="td_border_right"><input type="number" id="foodsfw_1" min="0" value="45"></td>
+            <td id="Le2"></td>
+        </tr>
+        <tr class="tr_border_bottom">
+            <th class="td_border_right">纪念品</th>
+            <td><input type="number" id="toys_0" min="0" value="0"></td>
+            <td><input type="number" id="toys_1" min="0" value="0"></td>
+            <td class="td_border_right"></td>
+            <td><input type="number" id="toysdt_0" min="0" value="0"></td>
+            <td class="td_border_right"></td>
+            <td><input type="number" id="toysfw_0" min="0" value="950"></td>
+            <td class="td_border_right"><input type="number" id="toysfw_1" min="0" value="1050"></td>
+            <td id="Le3"></td>
+        </tr>
+        <tr>
+            <td class="tr_border_bottom">销售名次奖励</td>
+            <td class="tr_border_bottom"><input type="number" id="bonus_1" min="0" value="5000"></td>
+            <td class="tr_border_bottom"><input type="number" id="bonus_2" min="0" value="2000"></td>
+            <td class="td_border_right tr_border_bottom"><input type="number" id="bonus_3" min="0" value="1000"></td>
+            <td colspan="2" rowspan="2">
+                <div class="div_button" onclick="reset_calc();">重置</div>
+            </td>
+            <td colspan="2" rowspan="2">
+                <div class="div_button" onclick="jinhuo();">是否要打探纪念品进货策略？</div>
+            </td>
+            <td colspan="1" rowspan="2">
+                <div class="div_button" onclick="calculate();">开始计算策略</div>
+            </td>
+        </tr>
+        <tr class="tr_border_bottom">
+            <td>打探次数剩余</td>
+            <td colspan="3" class="td_border_right"><input type="number" id="detect" min="0" value="0"></td>
+        </tr>
+        <tr>
+            <td colspan="9" id="L8">这里显示计算结果</td>
+        </tr>
+    </table>
+
+    <script>
+        function sum(array) {
+            return array.reduce((accumulator, currentValue) => {return accumulator + currentValue}, 0)
+        }
+
+        function rank(price_list, index) {
+            let ret = 1
+            for (let i = 0; i < price_list.length; i++) {
+                if (price_list[i] < price_list[index]) {
+                    ret += 1
+                }
+            }
+            return ret
+        }
+
+        function percentages(price_list) {
+            let ranks = [0, 0, 0]
+            for (let i = 0; i < 3; i++) {
+                ranks[i] = rank(price_list, i)
+            }
+            if (ranks.includes(2) && ranks.includes(3)) {
+                for (let i = 0; i < 3; i++) {
+                    ranks[i] = (5 - ranks[i]) / 9
+                }
+            }
+            else if (ranks.includes(2) || ranks.includes(3)) {
+                for (let i = 0; i < 3; i++) {
+                    ranks[i] = (5 - ranks[i]) / 10
+                }
+            }
+            else {
+                for (let i = 0; i < 3; i++) {
+                    ranks[i] = 1 / 3
+                }
+            }
+            return ranks
+        }
+
+        function set_price(min_price, max_price, stocks, prices, bonus=[5000, 2000, 1000], print_result=0) {
+            if (prices[0] > 0) {
+                // 已知全部价格，进行销量计算
+                let market_percentage = percentages(prices)
+                let sell_count = [0, 0, 0]
+                let income = [0, 0, 0]
+                let total_stock = sum(stocks)
+                for (let i = 0; i < 3; i++) {
+                    sell_count[i] = Math.min(stocks[i], total_stock * market_percentage[i])
+                    income[i] = sell_count[i] * prices[i]
+                }
+                if (income[0] >= income[1] && income[0] >= income[2]) {
+                    income[0] += bonus[0]
+                }
+                else if (income[0] >= income[1] || income[0] >= income[2]) {
+                    income[0] += bonus[1]
+                }
+                else {
+                    income[0] += bonus[2]
+                }
+                if (print_result) {
+                    console.log(prices, sell_count, income[0])
+                }
+                return income[0]
+            }
+            else if (prices[1] > 0 && prices[2] > 0) {
+                // 已知两个对手的定价，计算我方最佳定价
+                let best_price = -1
+                let best_benefit = -1
+                let total_stock = sum(stocks)
+                for (let price = min_price; price < 1 + max_price; price++) {
+                    let actual_prices = prices.slice()
+                    actual_prices[0] = price
+                    let actual_income = set_price(min_price, max_price, stocks, actual_prices, bonus=bonus)
+                    if (actual_income >= best_benefit) {
+                        best_benefit = actual_income
+                        best_price = price
+                    }
+                }
+                return [best_price, best_benefit]
+            }
+            else if (sum(prices) > 0) {
+                // 仅已知一个对手定价，计算我方期望最佳定价和进一步探测收益
+                let missing_place
+                if (prices[1] > 0) {
+                    missing_place = 2
+                }
+                else {
+                    missing_place = 1
+                }
+                let max_income = 0
+                let best_price = 0
+                for (let my_price = min_price; my_price < 1 + max_price; my_price++) {
+                    let sum_income = 0
+                    for (let opponent_price = min_price; opponent_price < 1 + sum(prices); opponent_price++) {
+                        let actual_prices = prices.slice()
+                        actual_prices[0] = my_price
+                        actual_prices[missing_place] = opponent_price
+                        let got_income = set_price(min_price, max_price, stocks, actual_prices, bonus=bonus)
+                        // 两个对手定价相同的概率是定价不同的概率的一半，因为定价不同的话有BA和AB两种情况，定价相同只有BB一种
+                        if (opponent_price != sum(prices)) {
+                            sum_income += got_income
+                        }
+                        else {
+                            sum_income += got_income / 2
+                        }
+                    }
+                    if (sum_income >= max_income) {
+                        max_income = sum_income
+                        best_price = my_price
+                    }
+                }
+
+                let sum_income_while_detected = 0
+                for (let opponent_price = min_price; opponent_price < 1 + sum(prices); opponent_price++) {
+                    let actual_prices = prices.slice()
+                    actual_prices[missing_place] = opponent_price
+                    let this_income = set_price(min_price, max_price, stocks, actual_prices)
+                    if (opponent_price != sum(prices)) {
+                        sum_income_while_detected += this_income[1]
+                    }
+                    else {
+                        sum_income_while_detected += this_income[1] / 2
+                    }
+                }
+                // 因此总情况数量也要减去半个
+                let average_income_while_detected = sum_income_while_detected / (sum(prices) + 1 - min_price - 0.5)
+                let average_income_not_detected = max_income / (sum(prices) + 1 - min_price - 0.5)
+
+                return [best_price, average_income_not_detected, average_income_while_detected - average_income_not_detected]
+            }
+            else {
+                // 对手定价完全未知，计算盲开最佳定价以及探测收益
+                let total_income = 0
+                let second_detect_benefit = 0
+                let first_detect_benefit = 0
+                for (let price1 = min_price; price1 < 1 + max_price; price1++) {
+                    for (let price2 = min_price; price2 < 1 + max_price; price2++) {
+                        let detected_price
+                        detected_price = [0, price1, 0]
+                        let result1 = set_price(min_price, max_price, stocks, detected_price, bonus=bonus)
+                        detected_price = [0, 0, price2]
+                        let result2 = set_price(min_price, max_price, stocks, detected_price, bonus=bonus)
+                        if (price1 > price2) {
+                            second_detect_benefit += result1[2]
+                            first_detect_benefit += result1[1]
+                        }
+                        else if (price2 > price1) {
+                            second_detect_benefit += result2[2]
+                            first_detect_benefit += result2[1]
+                        }
+                        else {
+                            second_detect_benefit += (result1[2] + result2[2]) / 2
+                            first_detect_benefit += (result1[1] + result2[1]) / 2
+                        }
+                    }
+                }
+
+                first_detect_benefit /= (max_price - min_price + 1) * (max_price - min_price + 1)
+                let best_price = 0
+                let max_benefit = 0
+                for (let price0 = min_price; price0 < 1 + max_price; price0++) {
+                    let benefit = 0
+                    for (let price1 = min_price; price1 < 1 + max_price; price1++) {
+                        for (let price2 = min_price; price2 < 1 + max_price; price2++) {
+                            benefit += set_price(min_price, max_price, stocks, [price0, price1, price2], bonus=bonus)
+                        }
+                    }
+                    if (benefit > max_benefit) {
+                        max_benefit = benefit
+                        best_price = price0
+                    }
+                }
+
+                return [
+                    best_price,
+                    max_benefit / ((max_price - min_price + 1) ** 2),
+                    Math.round(first_detect_benefit - max_benefit / ((max_price - min_price + 1) ** 2), 6),
+                    second_detect_benefit / ((max_price - min_price) ** 2)
+                ]
+            }
+        }
+
+        function safe_int(s) {
+            return parseInt(s) || 0
+        }
+
+        function toy_benefit(min_price, max_price, stocks) {
+            let orig_win, best_win, n
+            if (stocks[0] == stocks[1]) {
+                orig_win = stocks[0] * min_price
+                best_win = 0
+                n = 0
+                for (let price2 = min_price; price2 < max_price + 10; price2 += 10) {
+                    n += 1
+                    best_win += stocks[0] * price2
+                }
+                best_win /= n
+                return [best_win, orig_win]
+            }
+            else {
+                orig_win = 0
+                best_win = 0
+                n = 0
+                for (let price2 = min_price; price2 < max_price + 10; price2 += 10) {
+                    n += 1
+                    if (price2 != min_price) {
+                        orig_win += stocks[0] * min_price
+                        best_win += stocks[0] * (price2 - 10)
+                    }
+                    else {
+                        orig_win += (stocks[0] + stocks[1]) / 2 * min_price
+                        best_win += (stocks[0] + stocks[1]) / 2 * min_price
+                    }
+                }
+                best_win /= n
+                orig_win /= n
+                return [best_win, orig_win]
+            }
+        }
+
+        function best_strategy(s, t) {
+            let ret = []
+            for (let i = 0; i < s.length; i++) {
+                ret.push(0)
+            }
+            if (t <= 0) {
+                return [ret, 0]
+            }
+            let max = -99999
+            for (let i = 0; i < s.length; i++) {
+                let s2 = []
+                for (let j = 0; j < s.length; j++) {
+                    s2.push(s[j].slice())
+                }
+                if (s2[i].length > 0) {
+                    let temp = s2[i][0]
+                    s2[i] = s2[i].slice(1)
+                    let new_strat = best_strategy(s2.slice(), t - 1)
+                    if (new_strat[1] + temp > max) {
+                        max = new_strat[1] + temp
+                        ret = new_strat[0]
+                        ret[i] += 1
+                    }
+                }
+            }
+            return [ret, max]
+        }
+
+        function calculate() {
+            console.log('calculate()')
+            let detect_time = safe_int(document.getElementById('detect').value)
+            let minus, result
+            let txt, txt_big = ''
+            if (
+                safe_int(document.getElementById('drinksfw_0').value) < 1 ||
+                safe_int(document.getElementById('drinksfw_1').value) < 1 ||
+                safe_int(document.getElementById('drinksfw_0').value) > safe_int(document.getElementById('drinksfw_1').value) ||
+                safe_int(document.getElementById('foodsfw_0').value) < 1 ||
+                safe_int(document.getElementById('foodsfw_1').value) < 1 ||
+                safe_int(document.getElementById('foodsfw_0').value) > safe_int(document.getElementById('foodsfw_1').value) ||
+                safe_int(document.getElementById('toysfw_0').value) < 1 ||
+                safe_int(document.getElementById('toysfw_1').value) < 1 ||
+                safe_int(document.getElementById('toysfw_0').value) > safe_int(document.getElementById('toysfw_1').value)
+            ) {
+                document.getElementById('L8').innerHTML = '数据异常，请检查定价是否填写错误'
+                return
+            }
+            minus = -1
+            if (detect_time <= 0) {
+                if (!document.getElementById('Le1').innerHTML) {
+                    best = set_price(
+                        min_price=safe_int(document.getElementById('drinksfw_0').value),
+                        max_price=safe_int(document.getElementById('drinksfw_1').value),
+                        stocks=[safe_int(document.getElementById('drinks_0').value), safe_int(document.getElementById('drinks_1').value), safe_int(document.getElementById('drinks_2').value)],
+                        prices=[0, safe_int(document.getElementById('drinksdt_0').value), safe_int(document.getElementById('drinksdt_1').value)],
+                        bonus=[safe_int(document.getElementById('bonus_1').value), safe_int(document.getElementById('bonus_2').value), safe_int(document.getElementById('bonus_3').value)],
+                    )
+                    txt = `你应该定价为${best[0]}，预计收益为${best[1]}`
+                    document.getElementById('Le1').innerHTML = txt
+                }
+                if (!document.getElementById('Le2').innerHTML) {
+                    best = set_price(
+                        min_price=safe_int(document.getElementById('foodsfw_0').value),
+                        max_price=safe_int(document.getElementById('foodsfw_1').value),
+                        stocks=[safe_int(document.getElementById('foods_0').value), safe_int(document.getElementById('foods_1').value), safe_int(document.getElementById('foods_2').value)],
+                        prices=[0, safe_int(document.getElementById('foodsdt_0').value), safe_int(document.getElementById('foodsdt_1').value)],
+                        bonus=[safe_int(document.getElementById('bonus_1').value), safe_int(document.getElementById('bonus_2').value), safe_int(document.getElementById('bonus_3').value)],
+                    )
+                    txt = `你应该定价为${best[0]}，预计收益为${best[1]}`
+                    document.getElementById('Le2').innerHTML= txt
+                }
+                if (!document.getElementById('Le3').innerHTML) {
+                    min_price = safe_int(document.getElementById('toysfw_0').value)
+                    max_price = safe_int(document.getElementById('toysfw_1').value)
+                    stocks = [safe_int(document.getElementById('toys_0').value), safe_int(document.getElementById('toys_1').value)]
+                    bonus = [safe_int(document.getElementById('bonus_1').value), safe_int(document.getElementById('bonus_2').value), safe_int(document.getElementById('bonus_3').value)]
+                    price = safe_int(document.getElementById('toysdt_0').value)
+                    if (price < min_price) {
+                        result = toy_benefit(min_price, max_price, stocks)[1]
+                        p = min_price
+                    }
+                    else {
+                        if (price == min_price) {
+                            result = (stocks[0] + stocks[1]) / 2 * min_price
+                            p = min_price
+                        }
+                        else {
+                            if (stocks[0] > stocks[1]) {
+                                result = stocks[0] * (price - 10)
+                                p = price - 10
+                            }
+                            else {
+                                result = stocks[0] * price
+                                p = price
+                            }
+                        }
+                    }
+
+                    result += bonus[0]
+                    txt = `你应该定价为${p}，预计收益为${result}<br>若有积压纪念品，可以适当减价10抛售`
+                    best_drink = set_price(
+                        min_price=safe_int(document.getElementById('drinksfw_0').value),
+                        max_price=safe_int(document.getElementById('drinksfw_1').value),
+                        stocks=[safe_int(document.getElementById('drinks_0').value), safe_int(document.getElementById('drinks_1').value),
+                                safe_int(document.getElementById('drinks_2').value)],
+                        prices=[0, safe_int(document.getElementById('drinksdt_0').value), safe_int(document.getElementById('drinksdt_1').value)],
+                        bonus=[safe_int(document.getElementById('bonus_1').value), safe_int(document.getElementById('bonus_2').value), safe_int(document.getElementById('bonus_3').value)],
+                    )
+                    best_food = set_price(
+                        min_price=safe_int(document.getElementById('foodsfw_0').value),
+                        max_price=safe_int(document.getElementById('foodsfw_1').value),
+                        stocks=[safe_int(document.getElementById('foods_0').value), safe_int(document.getElementById('foods_1').value), safe_int(document.getElementById('foods_2').value)],
+                        prices=[0, safe_int(document.getElementById('foodsdt_0').value), safe_int(document.getElementById('foodsdt_1').value)],
+                        bonus=[safe_int(document.getElementById('bonus_1').value), safe_int(document.getElementById('bonus_2').value), safe_int(document.getElementById('bonus_3').value)],
+                    )
+                    txt_big = `计算完成！享受你的收益吧！预期收益是${best_drink[1] + best_food[1] + result}`
+                    document.getElementById('Le3').innerHTML = txt
+                }
+            }
+            else {
+                if (!document.getElementById('Le1').innerHTML) {
+                    let best_drink = set_price(
+                        min_price=safe_int(document.getElementById('drinksfw_0').value),
+                        max_price=safe_int(document.getElementById('drinksfw_1').value),
+                        stocks=[safe_int(document.getElementById('drinks_0').value), safe_int(document.getElementById('drinks_1').value),
+                                safe_int(document.getElementById('drinks_2').value)],
+                        prices=[0, safe_int(document.getElementById('drinksdt_0').value), safe_int(document.getElementById('drinksdt_1').value)],
+                        bonus=[safe_int(document.getElementById('bonus_1').value), safe_int(document.getElementById('bonus_2').value), safe_int(document.getElementById('bonus_3').value)],
+                    )
+                    let best_food = set_price(
+                        min_price=safe_int(document.getElementById('foodsfw_0').value),
+                        max_price=safe_int(document.getElementById('foodsfw_1').value),
+                        stocks=[safe_int(document.getElementById('foods_0').value), safe_int(document.getElementById('foods_1').value), safe_int(document.getElementById('foods_2').value)],
+                        prices=[0, safe_int(document.getElementById('foodsdt_0').value), safe_int(document.getElementById('foodsdt_1').value)],
+                        bonus=[safe_int(document.getElementById('bonus_1').value), safe_int(document.getElementById('bonus_2').value), safe_int(document.getElementById('bonus_3').value)],
+                    )
+                    if (best_drink.length < 3) {
+                        txt_big = "请给饮品定价，然后点击“开始计算”进入下一步"
+                        txt = `你应该定价为${best_drink[0]}，预计收益为${best_drink[1]}`
+                        document.getElementById('Le1').innerHTML = txt
+                        minus = 0
+                    }
+                    else {
+                        let next_step_gain = best_drink.slice(2)
+                        let food_gain = best_food.slice(2)
+                        let toy_ = toy_benefit(
+                            safe_int(document.getElementById('toysfw_0').value),
+                            safe_int(document.getElementById('toysfw_1').value),
+                            [safe_int(document.getElementById('toys_0').value), safe_int(document.getElementById('toys_1').value)]
+                        )
+                        let toy_gain = [toy_[0] - toy_[1]]
+                        for (let q = 0; q < detect_time; q++) {
+                            next_step_gain.push(0)
+                            food_gain.push(0)
+                            toy_gain.push(0)
+                        }
+                        let best_strat = best_strategy([next_step_gain, food_gain, toy_gain], detect_time)
+                        if (best_strat[0][0] > 0) {
+                            txt_big = "请打探一次饮品售价并在输入框中输入，然后点击“开始计算”"
+                        }
+                        else {
+                            txt_big = "请给饮品定价，然后点击“开始计算”进入下一步"
+                            txt = `你应该定价为${best_drink[0]}，预计收益为${best_drink[1]}`
+                            document.getElementById('Le1').innerHTML = txt
+                            minus = 0
+                        }
+                    }
+                }
+                else if (!document.getElementById('Le2').innerHTML) {
+                    let best_food = set_price(
+                        min_price=safe_int(document.getElementById('foodsfw_0').value),
+                        max_price=safe_int(document.getElementById('foodsfw_1').value),
+                        stocks=[safe_int(document.getElementById('foods_0').value), safe_int(document.getElementById('foods_1').value), safe_int(document.getElementById('foods_2').value)],
+                        prices=[0, safe_int(document.getElementById('foodsdt_0').value), safe_int(document.getElementById('foodsdt_1').value)],
+                        bonus=[safe_int(document.getElementById('bonus_1').value), safe_int(document.getElementById('bonus_2').value), safe_int(document.getElementById('bonus_3').value)],
+                    )
+                    if (best_food.length < 3) {
+                        txt_big = "请给食品定价，然后点击“开始计算”进入下一步"
+                        txt = `你应该定价为${best_food[0]}，预计收益为${best_food[1]}`
+                        document.getElementById('Le2').innerHTML = txt
+                        minus = 0
+                    }
+                    else {
+                        let next_step_gain = best_food.slice(2)
+                        let toy_ = toy_benefit(
+                            safe_int(document.getElementById('toysfw_0').value),
+                            safe_int(document.getElementById('toysfw_1').value),
+                            [safe_int(document.getElementById('toys_0').value), safe_int(document.getElementById('toys_1').value)]
+                        )
+                        let toy_gain = [toy_[0] - toy_[1]]
+                        for (let q = 0; q < detect_time; q++) {
+                            next_step_gain.push(0)
+                            toy_gain.push(0)
+                        }
+                        let best_strat = best_strategy([next_step_gain, toy_gain], detect_time)
+                        if (best_strat[0][0] > 0) {
+                            txt_big = "请打探一次食品售价并在输入框中输入，然后点击“开始计算”"
+                        }
+                        else {
+                            txt_big = "请给食品定价，然后点击“开始计算”进入下一步"
+                            txt = `你应该定价为${best_food[0]}，预计收益为${best_food[1]}`
+                            document.getElementById('Le2').innerHTML = txt
+                            minus = 0
+                        }
+                    }
+                }
+                else if (!document.getElementById('Le3').innerHTML) {
+                    txt_big = "请打探一次纪念品售价并在输入框中输入，然后点击“开始计算”"
+                    minus = -detect_time
+                }
+            }
+            document.getElementById('detect').value = Math.max(0, parseInt(detect_time) + parseInt(minus))
+            document.getElementById('L8').innerHTML = txt_big
+        }
+
+        function jinhuo() {
+            console.log('jinhuo()')
+            if (!safe_int(document.getElementById('foods_0').value) || !safe_int(document.getElementById('drinks_0').value) || !safe_int(document.getElementById('toys_0').value)) {
+                document.getElementById('L8').innerHTML = '请在“你的”一栏填入三种商品的总进货量'
+            }
+            else {
+                detect_time = safe_int(document.getElementById('detect').value)
+                if (detect_time < 4) {
+                    document.getElementById('L8').innerHTML = '不要打探定价'
+                } 
+                else if (detect_time > 6) {
+                    document.getElementById('L8').innerHTML = '请正确输入打探次数'
+                    return
+                }
+                if (detect_time == 6) {
+                    document.getElementById('L8').innerHTML = '打探纪念品进货策略，并选择恰好高于对手的策略（若为激进，则也选激进）'
+                    return
+                }
+                food_total = safe_int(document.getElementById('foods_0').value)
+                drink_total = safe_int(document.getElementById('drinks_0').value)
+                ertanshouyi1 = set_price(
+                    min_price=safe_int(document.getElementById('foodsfw_0').value),
+                    max_price=safe_int(document.getElementById('foodsfw_1').value),
+                    stocks=[safe_int(document.getElementById('foods_0').value) * 0.4, safe_int(document.getElementById('foods_0').value) * 0.4,
+                            safe_int(document.getElementById('foods_0').value) * 0.2],
+                    prices=[0, 0, 0],
+                    bonus=[safe_int(document.getElementById('bonus_1').value), safe_int(document.getElementById('bonus_2').value), safe_int(document.getElementById('bonus_3').value)],
+                )[3]
+                ertanshouyi2 = set_price(
+                    min_price=safe_int(document.getElementById('foodsfw_0').value),
+                    max_price=safe_int(document.getElementById('foodsfw_1').value),
+                    stocks=[safe_int(document.getElementById('foods_0').value) * 0.4, safe_int(document.getElementById('foods_0').value) * 0.3,
+                            safe_int(document.getElementById('foods_0').value) * 0.3],
+                    prices=[0, 0, 0],
+                    bonus=[safe_int(document.getElementById('bonus_1').value), safe_int(document.getElementById('bonus_2').value), safe_int(document.getElementById('bonus_3').value)],
+                )[3]
+                ertanshouyi3 = set_price(
+                    min_price=safe_int(document.getElementById('foodsfw_0').value),
+                    max_price=safe_int(document.getElementById('foodsfw_1').value),
+                    stocks=[safe_int(document.getElementById('foods_0').value) * 4/9, safe_int(document.getElementById('foods_0').value) * 1/3,
+                            safe_int(document.getElementById('foods_0').value) * 2/9],
+                    prices=[0, 0, 0],
+                    bonus=[safe_int(document.getElementById('bonus_1').value), safe_int(document.getElementById('bonus_2').value), safe_int(document.getElementById('bonus_3').value)],
+                )[3]
+                ertanshouyi4 = set_price(
+                    min_price=safe_int(document.getElementById('drinksfw_0').value),
+                    max_price=safe_int(document.getElementById('drinksfw_1').value),
+                    stocks=[safe_int(document.getElementById('drinks_0').value) * 0.4, safe_int(document.getElementById('drinks_0').value) * 0.4,
+                            safe_int(document.getElementById('drinks_0').value) * 0.2],
+                    prices=[0, 0, 0],
+                    bonus=[safe_int(document.getElementById('bonus_1').value), safe_int(document.getElementById('bonus_2').value), safe_int(document.getElementById('bonus_3').value)],
+                )[3]
+                ertanshouyi5 = set_price(
+                    min_price=safe_int(document.getElementById('drinksfw_0').value),
+                    max_price=safe_int(document.getElementById('drinksfw_1').value),
+                    stocks=[safe_int(document.getElementById('drinks_0').value) * 0.4, safe_int(document.getElementById('drinks_0').value) * 0.3,
+                            safe_int(document.getElementById('drinks_0').value) * 0.3],
+                    prices=[0, 0, 0],
+                    bonus=[safe_int(document.getElementById('bonus_1').value), safe_int(document.getElementById('bonus_2').value), safe_int(document.getElementById('bonus_3').value)],
+                )[3]
+                ertanshouyi6 = set_price(
+                    min_price=safe_int(document.getElementById('drinksfw_0').value),
+                    max_price=safe_int(document.getElementById('drinksfw_1').value),
+                    stocks=[safe_int(document.getElementById('drinks_0').value) * 4/9, safe_int(document.getElementById('drinks_0').value) * 1/3,
+                            safe_int(document.getElementById('drinks_0').value) * 2/9],
+                    prices=[0, 0, 0],
+                    bonus=[safe_int(document.getElementById('bonus_1').value), safe_int(document.getElementById('bonus_2').value), safe_int(document.getElementById('bonus_3').value)],
+                )[3]
+                ertanshouyimax = Math.max(ertanshouyi3/4+ertanshouyi2/4+ertanshouyi1/2, ertanshouyi6/4+ertanshouyi5/4+ertanshouyi4/2)
+                ertanshouyimin = Math.min(ertanshouyi3/4+ertanshouyi2/4+ertanshouyi1/2, ertanshouyi6/4+ertanshouyi5/4+ertanshouyi4/2)
+                toy_gain = safe_int(document.getElementById('toys_0').value) * 20
+                if (toy_gain > ertanshouyimax / 9 + ertanshouyimin * 1.25 && detect_time == 4) {
+                    document.getElementById('L8').innerHTML = '可以打探进货策略，并选择恰好高于对手的策略。风险和收益并存，自行抉择。'
+                }
+                else {
+                    if ((toy_gain > ertanshouyimin && detect_time >= 5)) {
+                        document.getElementById('L8').innerHTML = '可以打探进货策略，并选择恰好高于对手的策略。基本没有风险。'
+                    }
+                    else {
+                        document.getElementById('L8').innerHTML = '不打探纪念品策略，直接选择激进收益更高'
+                    }
+                }
+            }
+        }
+
+        function reset_calc() {
+            document.getElementById('Le1').innerHTML = ''
+            document.getElementById('Le2').innerHTML = ''
+            document.getElementById('Le3').innerHTML = ''
+            document.getElementById('detect').value = 0
+            document.getElementById('L8').innerHTML = '这里显示计算结果'
+        }
+
+        // 页面加载完成时执行
+        console.log('OK')
+        
+    </script>
+</body>
+</html>
