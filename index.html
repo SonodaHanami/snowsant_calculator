@@ -255,14 +255,14 @@
             <th colspan="3" class="td_border_right" style="width: 25%;">
                 采购数量
             </th>
+            <th colspan="2" class="td_border_right" style="width: 25%;">
+                定价范围
+            </th>
             <td colspan="2" class="td_border_right" style="width: 25%;">
                 <p><span style="font-size: 1.5em">打探结果</span>，未打探则填0</p>
                 <p>注意不要搞反两个对手的顺序</p>
                 <p>搞错顺序导致的收益损失自行承担</p>
             </td>
-            <th colspan="2" class="td_border_right" style="width: 25%;">
-                定价范围
-            </th>
             <th style="width: 25%;">
                 推荐定价和预计收益
             </th>
@@ -272,20 +272,20 @@
                 <td>你</td>
                 <td>对手A</td>
                 <td class="td_border_right">对手B</td>
-                <td>对手A定价</td>
-                <td class="td_border_right">对手B定价</td>
                 <td>最低</td>
                 <td class="td_border_right">最高</td>
+                <td>对手A定价</td>
+                <td class="td_border_right">对手B定价</td>
         </tr>
         <tr>
-            <th class="td_border_right">饮料</th>
+            <th class="td_border_right">饮品</th>
             <td><input type="number" id="drinks_0" min="0" value="0"></td>
             <td><input type="number" id="drinks_1" min="0" value="0"></td>
             <td class="td_border_right"><input type="number" id="drinks_2" min="0" value="0"></td>
+            <td><input type="number" id="drinksfw_0" min="0" value="95"></td>
+            <td class="td_border_right"><input type="number" id="drinksfw_1" min="0" value="105"></td>
             <td><input type="number" id="drinksdt_0" min="0" value="0"></td>
             <td class="td_border_right"><input type="number" id="drinksdt_1" min="0" value="0"></td>
-            <td><input type="number" id="drinksfw_0" min="0" value="45"></td>
-            <td class="td_border_right"><input type="number" id="drinksfw_1" min="0" value="55"></td>
             <td id="Le1"></td>
         </tr>
         <tr>
@@ -293,10 +293,10 @@
             <td><input type="number" id="foods_0" min="0" value="0"></td>
             <td><input type="number" id="foods_1" min="0" value="0"></td>
             <td class="td_border_right"><input type="number" id="foods_2" min="0" value="0"></td>
+            <td><input type="number" id="foodsfw_0" min="0" value="75"></td>
+            <td class="td_border_right"><input type="number" id="foodsfw_1" min="0" value="85"></td>
             <td><input type="number" id="foodsdt_0" min="0" value="0"></td>
             <td class="td_border_right"><input type="number" id="foodsdt_1" min="0" value="0"></td>
-            <td><input type="number" id="foodsfw_0" min="0" value="35"></td>
-            <td class="td_border_right"><input type="number" id="foodsfw_1" min="0" value="45"></td>
             <td id="Le2"></td>
         </tr>
         <tr class="tr_border_bottom">
@@ -304,10 +304,10 @@
             <td><input type="number" id="toys_0" min="0" value="0"></td>
             <td><input type="number" id="toys_1" min="0" value="0"></td>
             <td class="td_border_right"></td>
-            <td><input type="number" id="toysdt_0" min="0" value="0"></td>
-            <td class="td_border_right"></td>
             <td><input type="number" id="toysfw_0" min="0" value="950"></td>
             <td class="td_border_right"><input type="number" id="toysfw_1" min="0" value="1050"></td>
+            <td><input type="number" id="toysdt_0" min="0" value="0"></td>
+            <td class="td_border_right"></td>
             <td id="Le3"></td>
         </tr>
         <tr>
@@ -322,7 +322,7 @@
                 <div class="div_button" onclick="jinhuo();">是否要打探纪念品进货策略？</div>
             </td>
             <td colspan="1" rowspan="2">
-                <div class="div_button" onclick="calculate();">开始计算策略</div>
+                <div class="div_button" onclick="calculate();">开始计算</div>
             </td>
         </tr>
         <tr class="tr_border_bottom">
@@ -610,7 +610,7 @@
                         prices=[0, safe_int(document.getElementById('drinksdt_0').value), safe_int(document.getElementById('drinksdt_1').value)],
                         bonus=[safe_int(document.getElementById('bonus_1').value), safe_int(document.getElementById('bonus_2').value), safe_int(document.getElementById('bonus_3').value)],
                     )
-                    txt = `你应该定价为${best[0]}，预计收益为${best[1]}`
+                    txt = `定价${best[0]}，预计收益为${best[1]}`
                     document.getElementById('Le1').innerHTML = txt
                 }
                 if (!document.getElementById('Le2').innerHTML) {
@@ -621,7 +621,7 @@
                         prices=[0, safe_int(document.getElementById('foodsdt_0').value), safe_int(document.getElementById('foodsdt_1').value)],
                         bonus=[safe_int(document.getElementById('bonus_1').value), safe_int(document.getElementById('bonus_2').value), safe_int(document.getElementById('bonus_3').value)],
                     )
-                    txt = `你应该定价为${best[0]}，预计收益为${best[1]}`
+                    txt = `定价${best[0]}，预计收益为${best[1]}`
                     document.getElementById('Le2').innerHTML= txt
                 }
                 if (!document.getElementById('Le3').innerHTML) {
@@ -652,7 +652,7 @@
                     }
 
                     result += bonus[0]
-                    txt = `你应该定价为${p}，预计收益为${result}<br>若有积压纪念品，可以适当减价10抛售`
+                    txt = `定价${p}，预计收益为${result}<br>若有积压纪念品，可以适当减价10抛售`
                     best_drink = set_price(
                         min_price=safe_int(document.getElementById('drinksfw_0').value),
                         max_price=safe_int(document.getElementById('drinksfw_1').value),
@@ -690,8 +690,8 @@
                         bonus=[safe_int(document.getElementById('bonus_1').value), safe_int(document.getElementById('bonus_2').value), safe_int(document.getElementById('bonus_3').value)],
                     )
                     if (best_drink.length < 3) {
-                        txt_big = "请给饮品定价，然后点击“开始计算”进入下一步"
-                        txt = `你应该定价为${best_drink[0]}，预计收益为${best_drink[1]}`
+                        txt_big = "请给饮品定价并售卖，然后点击“开始计算”进入下一步"
+                        txt = `定价${best_drink[0]}，预计收益为${best_drink[1]}`
                         document.getElementById('Le1').innerHTML = txt
                         minus = 0
                     }
@@ -714,8 +714,8 @@
                             txt_big = "请打探一次饮品售价并在输入框中输入，然后点击“开始计算”"
                         }
                         else {
-                            txt_big = "请给饮品定价，然后点击“开始计算”进入下一步"
-                            txt = `你应该定价为${best_drink[0]}，预计收益为${best_drink[1]}`
+                            txt_big = "请给饮品定价并售卖，然后点击“开始计算”进入下一步"
+                            txt = `定价${best_drink[0]}，预计收益为${best_drink[1]}`
                             document.getElementById('Le1').innerHTML = txt
                             minus = 0
                         }
@@ -730,8 +730,8 @@
                         bonus=[safe_int(document.getElementById('bonus_1').value), safe_int(document.getElementById('bonus_2').value), safe_int(document.getElementById('bonus_3').value)],
                     )
                     if (best_food.length < 3) {
-                        txt_big = "请给食品定价，然后点击“开始计算”进入下一步"
-                        txt = `你应该定价为${best_food[0]}，预计收益为${best_food[1]}`
+                        txt_big = "请给食品定价并售卖，然后点击“开始计算”进入下一步"
+                        txt = `定价${best_food[0]}，预计收益为${best_food[1]}`
                         document.getElementById('Le2').innerHTML = txt
                         minus = 0
                     }
@@ -752,8 +752,8 @@
                             txt_big = "请打探一次食品售价并在输入框中输入，然后点击“开始计算”"
                         }
                         else {
-                            txt_big = "请给食品定价，然后点击“开始计算”进入下一步"
-                            txt = `你应该定价为${best_food[0]}，预计收益为${best_food[1]}`
+                            txt_big = "请给食品定价并售卖，然后点击“开始计算”进入下一步"
+                            txt = `定价${best_food[0]}，预计收益为${best_food[1]}`
                             document.getElementById('Le2').innerHTML = txt
                             minus = 0
                         }
