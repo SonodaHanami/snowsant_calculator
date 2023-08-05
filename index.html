@@ -476,6 +476,7 @@
         let food_buyin = [15, 30, 48]
 
         let N = 0
+        let C = 0
 
         function sum(array) {
             return array.reduce((accumulator, currentValue) => {return accumulator + currentValue}, 0)
@@ -953,7 +954,9 @@
         }
 
         function choose_strat(inprice=[30, 42, 57], stock=360, strat=[0, 0, 0], outprice=[95, 105], detects=0) {
-            console.log(inprice, stock, strat, outprice, detects)
+            C++
+            // console.log('choose_strat', C)
+            // console.log(inprice, stock, strat, outprice, detects)
             let max_earn = 0
             let best = -1
             let total_possib = 9
@@ -967,21 +970,19 @@
                 range2 = [strat[2]]
                 total_possib /= 3
             }
+            let judge_active = false
+            if (strat[1] < 0 && strat[2] < 0) {
+                judge_active = true
+            }
             let a = [
                 [
-                    [0, 0, 0],
-                    [0, 0, 0],
-                    [0, 0, 0]
+                    [0, 0, 0], [0, 0, 0], [0, 0, 0]
                 ],
                 [
-                    [0, 0, 0],
-                    [0, 0, 0],
-                    [0, 0, 0]
+                    [0, 0, 0], [0, 0, 0], [0, 0, 0]
                 ],
                 [
-                    [0, 0, 0],
-                    [0, 0, 0],
-                    [0, 0, 0]
+                    [0, 0, 0], [0, 0, 0], [0, 0, 0]
                 ]
             ]
             for (let i = 0; i < 3; i++) {
@@ -990,6 +991,13 @@
                     let strat1 = range1[ri1]
                     for (let ri2 = 0; ri2 < range2.length; ri2++) {
                         let strat2 = range2[ri2]
+                        let total_earn_multiplier = 1
+                        if (judge_active && strat2 > strat1) {
+                            continue
+                        }
+                        else if (judge_active && strat2 < strat1) {
+                            total_earn_multiplier = 2
+                        }
                         let pct = percentages([-i, -strat1, -strat2])
                         let cost = pct[0] * stock * inprice[i]
                         // console.log('i, strat1, strat2', i, strat1, strat2)
@@ -999,8 +1007,11 @@
                             [0, 0, 0], [5000, 2000, 1000]
                         )
                         let total = [earn[1] - cost, earn[2], earn[3]]
-                        total_earn += sum(total.slice(0, 1 + detects))
+                        total_earn += sum(total.slice(0, 1 + detects))  * total_earn_multiplier
                         a[i][strat1][strat2] = sum(total.slice(0, 1 + detects))
+                        if (judge_active && strat2 < strat1) {
+                            a[i][strat2][strat1] = sum(total.slice(0, 1 + detects))
+                        }
                     }
                 }
                 if (total_earn > max_earn) {
@@ -1009,7 +1020,7 @@
                 }
             }
             let max_earn_not_detect = max_earn / total_possib
-            // console.log(a)
+            // console.log('max_earn_not_detect, max_earn, total_possib', max_earn_not_detect, max_earn, total_possib)
             let avg_earn_2_detect = 0
             // console.log(strat)
             if (strat[1] < 0 || strat[2] < 0) {
@@ -1021,11 +1032,12 @@
                                 max_earn = a[i][j][k]
                             }
                         }
-                        // console.log(max_earn)
+                        // console.log('max_earn', max_earn)
                         avg_earn_2_detect += max_earn / total_possib
                     }
                 }
                 if (!(strat[1] < 0 && strat[2] < 0)) {
+                    // console.log('max_earn_not_detect, avg_earn_2_detect - max_earn_not_detect', max_earn_not_detect, avg_earn_2_detect - max_earn_not_detect)
                     return [best, max_earn_not_detect, avg_earn_2_detect - max_earn_not_detect, 0]
                 }
             }
@@ -1041,11 +1053,14 @@
                         if (avg > big) {
                             big = avg
                         }
-                    avg_earn_1_detect += big / total_possib
                     }
+                    avg_earn_1_detect += big / total_possib
                 }
+                // console.log('avg_earn_1_detect, max_earn_not_detect, avg_earn_2_detect, avg_earn_1_detect', avg_earn_1_detect, max_earn_not_detect, avg_earn_2_detect, avg_earn_1_detect)
+                // console.log('best, max_earn_not_detect, avg_earn_1_detect - max_earn_not_detect, avg_earn_2_detect - avg_earn_1_detect', best, max_earn_not_detect, avg_earn_1_detect - max_earn_not_detect, avg_earn_2_detect - avg_earn_1_detect)
                 return [best, max_earn_not_detect, avg_earn_1_detect - max_earn_not_detect, avg_earn_2_detect - avg_earn_1_detect]
             }
+            // console.log('best, max_earn_not_detect', best, max_earn_not_detect)
             return [best, max_earn_not_detect, 0, 0]
         }
 
@@ -1190,7 +1205,7 @@
                 outprice=[safe_int(document.getElementById('drink_fw_0').value), safe_int(document.getElementById('drink_fw_1').value)],
                 detects=1
             ).slice(2)
-            console.log('drink_buy_strat', drink_buy_strat)
+            // console.log('drink_buy_strat', drink_buy_strat)
             let food_buy_strat = choose_strat(
                 inprice=[safe_int(food_buyin[0]), safe_int(food_buyin[1]), safe_int(food_buyin[2])],
                 stock=safe_int(document.getElementById('food_total').value),
@@ -1198,19 +1213,19 @@
                 outprice=[safe_int(document.getElementById('food_fw_0').value), safe_int(document.getElementById('food_fw_1').value)],
                 detects=1
                 ).slice(2)
-            console.log('food_buy_strat', drink_buy_strat)
+            // console.log('food_buy_strat', food_buy_strat)
             console.timeEnd('计算一阶段打探收益')
             console.time('计算二阶段打探收益')
             let toy_buy_strat = [20 * safe_int(document.getElementById('toy_total').value), 0]
             let p = [0, 0, 0, 0, 0, 0, 0, 0]
-            p[1] = (3 / 27, [1 / 3, 1 / 3, 1 / 3])
-            p[2] = (2 / 27, [2 / 9, 3 / 9, 4 / 9])
-            p[4] = (2 / 27, [4 / 9, 3 / 9, 2 / 9])
-            p[3] = (2 / 27, [3 / 9, 4 / 9, 2 / 9])
-            p[0] = (3 / 27, [4 / 10, 3 / 10, 3 / 10])
-            p[5] = (6 / 27, [4 / 10, 4 / 10, 2 / 10])
-            p[6] = (3 / 27, [2 / 10, 4 / 10, 4 / 10])
-            p[7] = (6 / 27, [3 / 10, 3 / 10, 4 / 10])
+            p[1] = [3 / 27, [1 / 3, 1 / 3, 1 / 3]]
+            p[2] = [2 / 27, [2 / 9, 3 / 9, 4 / 9]]
+            p[4] = [2 / 27, [4 / 9, 3 / 9, 2 / 9]]
+            p[3] = [2 / 27, [3 / 9, 4 / 9, 2 / 9]]
+            p[0] = [3 / 27, [4 / 10, 3 / 10, 3 / 10]]
+            p[5] = [6 / 27, [4 / 10, 4 / 10, 2 / 10]]
+            p[6] = [3 / 27, [2 / 10, 4 / 10, 4 / 10]]
+            p[7] = [6 / 27, [3 / 10, 3 / 10, 4 / 10]]
             let food_sell_strat = [0, 0]
             let drink_sell_strat = [0, 0]
             let toy_sell_strat = [0, 0]
@@ -1228,9 +1243,10 @@
                 )
                 drink_sell_strat[0] += dss[2] * p[i][0]
                 drink_sell_strat[1] += dss[3] * p[i][0]
+                // console.log('i, p[i], drink_sell_strat', i, p[i], drink_sell_strat)
 
                 for (let j = 0; j < 3; j++) {
-                    stocks[j] = p[i][1][j] * safe_int(document.getElementById('drink_total').value)
+                    stocks[j] = p[i][1][j] * safe_int(document.getElementById('food_total').value)
                 }
                 let fss = set_price(
                     min_price=safe_int(document.getElementById('food_fw_0').value),
@@ -1243,7 +1259,12 @@
                 food_sell_strat[1] += fss[3] * p[i][0]
             }
             toy_sell_strat[0] = 1 / 3 * 50 * safe_int(document.getElementById('toy_total').value) * 0.5 + 2 / 3 * 450 / 11 * safe_int(document.getElementById('toy_total').value) * 0.6
-            console.log(drink_buy_strat, food_buy_strat, toy_buy_strat, drink_sell_strat, food_sell_strat, toy_sell_strat)
+            // console.log('drink_buy_strat', drink_buy_strat)
+            // console.log('food_buy_strat', food_buy_strat)
+            // console.log('toy_buy_strat', toy_buy_strat)
+            // console.log('drink_sell_strat', drink_sell_strat)
+            // console.log('food_sell_strat', food_sell_strat)
+            // console.log('toy_sell_strat', toy_sell_strat)
             console.timeEnd('计算二阶段打探收益')
             console.time('穷举策略')
             for (let a = 0; a < 3; a++) {
@@ -1273,7 +1294,7 @@
                 }
             }
             console.timeEnd('穷举策略')
-            console.log(max_earn, best_strat)
+            // console.log(max_earn, best_strat)
             if (sum(best_strat) > 0) {
                 document.getElementById('L8').innerHTML = `打探饮品进货${best_strat[0]}次，打探食品进货${best_strat[1]}次，打探纪念品进货${best_strat[2]}次，然后输入打探结果并再次点击此按钮`
                 document.getElementById('detect').value = Math.max(0, detect_time - sum(best_strat))
