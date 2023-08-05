@@ -86,6 +86,10 @@
             font-size: 2em;
         }
 
+        #L8 span {
+            color: #FFA500;
+        }
+
         #table_cost {
             color: #FFF;
         }
@@ -437,8 +441,8 @@
             <td colspan="2" id="Le3"></td>
         </tr>
         <tr>
-            <td>剩余打探次数</td>
-            <td colspan="1" class=""><input type="number" id="detect" min="0" value="4"></td>
+            <td style="font-size: 2em; font-weight: bold;">剩余打探次数</td>
+            <td colspan="1" class=""><input type="number" id="detect" min="0" value="4"  style="font-size: 2em; font-weight: bold;"></td>
             <td></td>
             <td colspan="2" rowspan="1">
                 <div class="div_button" onclick="first_phase_greedy();">贪心算法判断进货策略</div>
@@ -895,8 +899,14 @@
                             toy_gain.push(0)
                         }
                         let best_strat = best_strategy([next_step_gain, food_gain, toy_gain], detect_time)
+                        console.log(best_strat)
                         if (best_strat[0][0] > 0) {
-                            txt_big = "请打探一次饮品售价并在输入框中输入，然后点击“开始计算”"
+                            if (safe_int(document.getElementById('drink_dt_0').value) == 0 && safe_int(document.getElementById('drink_dt_1').value) == 0) {
+                                txt_big = "请打探一次饮品售价并在输入框中输入，然后点击“开始计算”"
+                            }
+                            else {
+                                txt_big = `请<span><b>再</b></span>打探一次饮品售价并在输入框中输入，然后点击“开始计算”`
+                            }
                         }
                         else {
                             txt_big = "请给饮品定价并售卖，然后点击“开始计算”进入下一步"
@@ -934,7 +944,12 @@
                         }
                         let best_strat = best_strategy([next_step_gain, toy_gain], detect_time)
                         if (best_strat[0][0] > 0) {
-                            txt_big = "请打探一次食品售价并在输入框中输入，然后点击“开始计算”"
+                            if (safe_int(document.getElementById('food_dt_0').value) == 0 && safe_int(document.getElementById('food_dt_1').value) == 0) {
+                                txt_big = "请打探一次食品售价并在输入框中输入，然后点击“开始计算”"
+                            }
+                            else {
+                                txt_big = `请<span><b>再</b></span>打探一次食品售价并在输入框中输入，然后点击“开始计算”`
+                            }
                         }
                         else {
                             txt_big = "请给食品定价并售卖，然后点击“开始计算”进入下一步"
@@ -1123,7 +1138,7 @@
                 document.getElementById(`toy_stock_1`).innerHTML = total_goods * 0.6
                 document.getElementById(`toy_stock_0`).innerHTML = total_goods * 0.4
             }
-            document.getElementById('L8').innerHTML = '进货数量计算完毕，请比对是否与游戏中显示一致。'
+            document.getElementById('L8').innerHTML = '进货数量计算完毕，请比对是否与游戏中显示一致，然后可以开始计算。'
             return
         }
 
@@ -1140,7 +1155,7 @@
             strats_toy[0] = document.getElementById('toy_strat_0').value
             strats_toy[1] = document.getElementById('toy_strat_1').value
             let detect_time = safe_int(document.getElementById('detect').value)
-            document.getElementById('L8').innerHTML = '进货策略计算完毕，请按提示进货'
+            document.getElementById('L8').innerHTML = '进货策略计算完毕，请按提示进货，然后补全其他对手的进货策略，再计算进货数量并比对'
             
             let st1 = choose_strat(
                 inprice=[safe_int(drink_buyin[0]), safe_int(drink_buyin[1]), safe_int(drink_buyin[2])],
@@ -1168,7 +1183,6 @@
         }
 
         function first_phase_greedy() {
-            console.time('预处理')
             let strats_drink = [-1, -1, -1]
             strats_drink[0] = document.getElementById('drink_strat_0').value
             strats_drink[1] = document.getElementById('drink_strat_1').value
@@ -1196,7 +1210,6 @@
             }
             let max_earn = 0
             let best_strat = [-1, -1, -1]
-            console.timeEnd('预处理')
             console.time('计算一阶段打探收益')
             let drink_buy_strat = choose_strat(
                 inprice=[safe_int(drink_buyin[0]), safe_int(drink_buyin[1]), safe_int(drink_buyin[2])],
