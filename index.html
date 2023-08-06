@@ -72,14 +72,9 @@
             font-size: 1.5em;
         }
 
-        .table_text input {
-            /* height: 75px; */
+        .table_text input, .table_text select {
             width: 80%;
-            /* font-size: 1.5em; */
-        }
-
-        .table_text select {
-            width: 80%;
+            font-size: 1.25em;
         }
 
         #L8 {
@@ -113,7 +108,7 @@
             border-width: 0px;
         }
 
-        td[id^="td_cost"] span {
+        td[id^="td_cost"] span, td[id^="td_notice"] span {
             color: #FFA500;
             margin-left: 5px;
             margin-right: 5px;
@@ -266,7 +261,7 @@
     </table>
     <table class="table_text">
         <tr>
-            <td colspan="4" id="td_notice_2">
+            <td colspan="4" id="td_notice_0" class="">
                 <a href="https://www.bilibili.com/video/BV11p4y1V78k" target="_blank">【全站唯一】精确计算，极致高产！深度解析雪雉小店，附带经营策略计算器</a> 出现BUG可以私信作者 QQ交流群951454445
             </td>
             <td colspan="1">
@@ -274,15 +269,15 @@
             </td>
         </tr>
         <tr>
-            <td colspan="4" class="">
-                未打探时打探结果填0；注意看对手的图标，不要搞反两个对手的顺序，搞错顺序可能导致的收益损失需自行承担
+            <td colspan="4" id="td_notice_1" class="">
+                未打探时打探结果填0；注意看对手的<span>图标</span>，不要搞反两个对手的顺序，搞错顺序可能导致的收益损失需自行承担
             </td>
             <td colspan="1">
                 <p>移　植：<a href="https://space.bilibili.com/533170" target="_blank">羽波</a></p>
             </td>
         </tr>
         <tr>
-            <td colspan="4" class="">
+            <td colspan="4" id="td_notice_2" class="">
                 对于饮料和食物，单项的总进货量小于300时选择激进策略，大于等于300时选择稳健策略，大于1200时可选择保守策略
             </td>
             <td colspan="1" class="">
@@ -319,7 +314,8 @@
     <table class="table_text" id="table_main">
         <tr class="tr_border_bottom">
             <td class="td_border_right"></td>
-            <th colspan="4" class="td_border_right">
+            <td></td>
+            <th colspan="3" class="td_border_right">
                 采购策略
             </th>
             <th colspan="2" class="td_border_right">
@@ -332,14 +328,14 @@
         <tr>
                 <td class="td_border_right"></td>
                 <td>总量</td>
-                <td>你</td>
+                <td>自己</td>
                 <td class="aite_A">对手A<br>（钟表图标）</td>
                 <td class="td_border_right">对手B</td>
                 <td class="aite_A">对手A定价<br>（钟表图标）</td>
                 <td class="td_border_right">对手B定价</td>
         </tr>
         <tr>
-            <th class="td_border_right">饮品</th>
+            <th class="td_border_right tr_border_bottom">饮品</th>
             <td id="td_1_1"><input type="number" id="drink_total" min="0" value="0"><br>　</td>
             <td id="td_1_2">
                 <select name="drink_strat_0" id="drink_strat_0">
@@ -376,7 +372,7 @@
             <td colspan="2" id="td_1_7"></td>
         </tr>
         <tr>
-            <th class="td_border_right">食品</th>
+            <th class="td_border_right tr_border_bottom">食品</th>
             <td id="td_2_1"><input type="number" id="food_total" min="0" value="0"><br>　</td>
             <td id="td_2_2">
                 <select name="food_strat_0" id="food_strat_0">
@@ -442,7 +438,7 @@
         </tr>
         <tr>
             <td style="font-size: 2em; font-weight: bold;">剩余打探次数</td>
-            <td id="td_4_1" colspan="1" class=""><input type="number" id="detect" min="0" value="4"  style="font-size: 2em; font-weight: bold;"></td>
+            <td id="td_4_1" colspan="1" class=""><input type="number" id="detect" min="0" value="5"  style="font-size: 2em; font-weight: bold;"></td>
             <td></td>
             <td id="td_4_3" colspan="2" rowspan="1">
                 <div class="div_button" onclick="first_phase_greedy();">贪心算法判断进货策略</div>
@@ -460,7 +456,7 @@
             </td>
         </tr>
         <tr>
-            <td colspan="8" id="L8">请填写商品总量和剩余打探次数，然后点击“贪心算法判断进货策略”</td>
+            <td colspan="9" id="L8">请填写商品总量和剩余打探次数，然后点击“贪心算法判断进货策略”</td>
         </tr>
     </table>
 
@@ -788,7 +784,7 @@
                     txt = `定价${best[0]}，预计收益为${best[1]}`
                     document.getElementById('td_1_7').innerHTML = txt
                     document.getElementById(`td_1_7`).classList.add('current_step')
-
+                    document.getElementById(`td_4_7`).classList.add('current_step')
                 }
                 if (!document.getElementById('td_2_7').innerHTML) {
                     let best = set_price(
@@ -859,6 +855,7 @@
                         }
                     }
                     txt_big = `计算完成！享受你的收益吧！预期收益是${best_food[1] + best_drink[1] + result - cost}`
+                    document.getElementById(`L8`).classList.add('current_step')
                     if (cost < 1) {
                         txt_big += "（没有计算成本）"
                     }
@@ -923,6 +920,7 @@
                             txt = `定价${best_drink[0]}，预计收益为${best_drink[1]}`
                             document.getElementById('td_1_7').innerHTML = txt
                             document.getElementById(`td_1_7`).classList.add('current_step')
+                            document.getElementById(`td_4_7`).classList.add('current_step')
                             minus = 0
                         }
                     }
@@ -983,6 +981,7 @@
                 else if (!document.getElementById('td_3_7').innerHTML) {
                     txt_big = "请打探一次纪念品售价并在输入框中输入，然后点击“开始计算”"
                     document.getElementById(`td_3_5`).classList.add('current_step')
+                    document.getElementById(`td_3_6`).classList.add('current_step')
                     document.getElementById(`td_4_7`).classList.add('current_step')
                     minus = -detect_time
                 }
@@ -1172,6 +1171,7 @@
             document.getElementById(`td_2_4`).classList.add('current_step')
             document.getElementById(`td_3_2`).classList.add('current_step')
             document.getElementById(`td_3_3`).classList.add('current_step')
+            document.getElementById(`td_3_4`).classList.add('current_step')
             document.getElementById(`td_4_7`).classList.add('current_step')
             return
         }
@@ -1190,6 +1190,9 @@
             strats_toy[1] = document.getElementById('toy_strat_1').value
             let detect_time = safe_int(document.getElementById('detect').value)
             document.getElementById('L8').innerHTML = '进货策略计算完毕，请按提示进货，然后补全其他对手的进货策略，再计算进货数量并比对'
+            document.getElementById(`td_1_2`).classList.add('current_step')
+            document.getElementById(`td_2_2`).classList.add('current_step')
+            document.getElementById(`td_3_2`).classList.add('current_step')
             document.getElementById(`td_4_5`).classList.add('current_step')
             
             let st1 = choose_strat(
@@ -1220,14 +1223,15 @@
         function first_phase_greedy() {
             // 高亮
             reset_td_class()
-            document.getElementById(`td_1_2`).classList.add('current_step')
+            // document.getElementById(`td_1_2`).classList.add('current_step')
             document.getElementById(`td_1_3`).classList.add('current_step')
             document.getElementById(`td_1_4`).classList.add('current_step')
-            document.getElementById(`td_2_2`).classList.add('current_step')
+            // document.getElementById(`td_2_2`).classList.add('current_step')
             document.getElementById(`td_2_3`).classList.add('current_step')
             document.getElementById(`td_2_4`).classList.add('current_step')
-            document.getElementById(`td_3_2`).classList.add('current_step')
+            // document.getElementById(`td_3_2`).classList.add('current_step')
             document.getElementById(`td_3_3`).classList.add('current_step')
+            document.getElementById(`td_3_4`).classList.add('current_step')
 
             let strats_drink = [-1, -1, -1]
             strats_drink[0] = document.getElementById('drink_strat_0').value
