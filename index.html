@@ -299,13 +299,13 @@
         </tr>
         <tr>
             <td>饮品定价范围</td>
-            <td><input type="number" id="drink_fw_0" min="0" value="95"></td>
-            <td class="td_border_right"><input type="number" id="drink_fw_1" min="0" value="105"></td>
+            <td><input type="number" id="drink_fw_0" min="0" value="45"></td>
+            <td class="td_border_right"><input type="number" id="drink_fw_1" min="0" value="55"></td>
         </tr>
         <tr>
             <td>食品定价范围</td>
-            <td><input type="number" id="food_fw_0" min="0" value="75"></td>
-            <td class="td_border_right"><input type="number" id="food_fw_1" min="0" value="85"></td>
+            <td><input type="number" id="food_fw_0" min="0" value="35"></td>
+            <td class="td_border_right"><input type="number" id="food_fw_1" min="0" value="45"></td>
         </tr>
         <tr>
             <td>纪念品定价范围</td>
@@ -488,8 +488,9 @@
             1: "稳健",
             0: "保守",
         }
-        let drink_buyin = [30, 42, 57]
-        let food_buyin = [15, 30, 48]
+        let drink_buyin = [20, 28, 38]
+        let food_buyin = [10, 20, 32]
+        let toy_buyin = [50, 100, 200]
 
         let N = 0
         let C = 0
@@ -864,7 +865,6 @@
                         st_food = document.getElementById('food_strat_0').value
                         st_toy = document.getElementById('toy_strat_0').value
                         if (st_drink >= 0 && st_food >= 0 && st_toy >= 0) {
-                            let toy_buyin = [50, 100, 200]
                             cost += safe_int(drink_buyin[st_drink]) * safe_int(safe_int(document.getElementById('drink_stock_0').innerHTML))
                             cost += safe_int(food_buyin[st_food]) * safe_int(safe_int(document.getElementById('food_stock_0').innerHTML))
                             cost += safe_int(toy_buyin[st_toy]) * safe_int(safe_int(document.getElementById('toy_stock_0').innerHTML))
@@ -1410,15 +1410,45 @@
             document.getElementById('td_4_3').innerHTML = `<div class="div_button" onclick="calculate();">开始计算</div>`
         }
 
+        function update_settings() {
+            let t = +new Date()
+            if (t > 1691092800000) {
+                drink_buyin = [30, 42, 57]
+                food_buyin = [15, 30, 48]
+                document.getElementById('drink_fw_0').value = 95
+                document.getElementById('drink_fw_1').value = 105
+                document.getElementById('food_fw_0').value = 75
+                document.getElementById('food_fw_1').value = 85
+            }
+            if (t > 1691524800000) {
+                drink_buyin = [40, 56, 76]
+                food_buyin = [20, 40, 64]
+                document.getElementById('drink_fw_0').value = 145
+                document.getElementById('drink_fw_1').value = 155
+                document.getElementById('food_fw_0').value = 115
+                document.getElementById('food_fw_1').value = 125
+            }
+            if (t > 1691784000000) {
+                drink_buyin = [50, 70, 95]
+                food_buyin = [25, 50, 80]
+                document.getElementById('drink_fw_0').value = 195
+                document.getElementById('drink_fw_1').value = 205
+                document.getElementById('food_fw_0').value = 155
+                document.getElementById('food_fw_1').value = 165
+            }
+        }
+
         // 页面加载完成时执行
         // 高亮
-        document.getElementById(`td_1_1`).classList.add('current_step')
-        document.getElementById(`td_2_1`).classList.add('current_step')
-        document.getElementById(`td_3_1`).classList.add('current_step')
-        document.getElementById(`td_4_1`).classList.add('current_step')
-        document.getElementById(`td_4_3`).classList.add('current_step')
+        document.getElementById(`td_1_1`).classList.add('current_step');
+        document.getElementById(`td_2_1`).classList.add('current_step');
+        document.getElementById(`td_3_1`).classList.add('current_step');
+        document.getElementById(`td_4_1`).classList.add('current_step');
+        document.getElementById(`td_4_3`).classList.add('current_step');
+        // 自动更新设置
+        update_settings();
 
-        console.log('OK')
+        console.log('OK');
     </script>
 </body>
 </html>
