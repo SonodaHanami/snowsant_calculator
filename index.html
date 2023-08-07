@@ -28,7 +28,7 @@
         }
 
         a:link, a:visited {
-            color: #FFA500;
+            color: #ffce77;
             text-decoration: none;
         }
 
@@ -86,7 +86,11 @@
         }
 
         #L8 span {
-            color: #FFA500;
+            color: #ffce77;
+        }
+
+        #L8 span b {
+            color: #ff7777;
         }
 
         #table_cost {
@@ -113,7 +117,7 @@
         }
 
         td[id^="td_cost"] span, td[id^="td_notice"] span {
-            color: #FFA500;
+            color: #ffce77;
             margin-left: 5px;
             margin-right: 5px;
         }
@@ -1225,7 +1229,7 @@
             else {
                 document.getElementById('toy_strat_0').value = 2
             }
-            document.getElementById('L8').innerHTML = '进货策略计算完毕，请按提示进货（注意不要手滑点掉进货结果界面），然后补全其他对手的进货策略，再计算进货数量并比对'
+            document.getElementById('L8').innerHTML = '进货策略计算完毕，请按提示进货<span>（注意<b>不要手滑</b>点掉进货结果界面，总之先<b>截个图</b>吧）</span>，然后补全其他对手的进货策略，再计算进货数量并比对'
             document.getElementById(`td_1_2`).classList.add('current_step')
             document.getElementById(`td_2_2`).classList.add('current_step')
             document.getElementById(`td_3_2`).classList.add('current_step')
