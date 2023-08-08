@@ -82,7 +82,7 @@
             font-size: 1.25em;
         }
 
-        #table_settings {
+        #table_settings, #table_main_3 {
             background-color: #dddddd;
         }
 
@@ -480,9 +480,11 @@
                 <div class="div_button" onclick="first_phase_greedy();">贪心算法判断进货策略</div>
             </td>
         </tr>
-        <tr>
+        <tr class="tr_border_bottom">
             <td colspan="5" id="L8">请填写商品总量和剩余打探次数，然后点击“贪心算法判断进货策略”</td>
         </tr>
+    </table>
+    <table class="table_text" id="table_main_3">
     </table>
 
     <script>
@@ -1429,6 +1431,36 @@
             document.getElementById('table_main_0').style.display = 'none'
             document.getElementById('table_main_1').style.display = ''
             document.getElementById('td_4_3').innerHTML = `<div class="div_button" onclick="calculate();">开始计算</div>`
+            document.getElementById('table_main_3').innerHTML = `
+            <tr class="tr_border_bottom">
+                <th class="td_border_right">进货阶段总结</th>
+                <td>总量</tb>
+                <td>自己</tb>
+                <td>对手A</tb>
+                <td>对手B</tb>
+            </tr>
+            <tr>
+                <td class="td_border_right">饮品</tb>
+                <td>${document.getElementById('drink_total').value}</tb>
+                <td>${strattoint[document.getElementById('drink_strat_0').value]} ${document.getElementById('drink_stock_0').innerHTML}</tb>
+                <td>${strattoint[document.getElementById('drink_strat_1').value]} ${document.getElementById('drink_stock_1').innerHTML}</tb>
+                <td>${strattoint[document.getElementById('drink_strat_2').value]} ${document.getElementById('drink_stock_2').innerHTML}</tb>
+            </tr>
+            <tr>
+                <td class="td_border_right">食品</tb>
+                <td>${document.getElementById('food_total').value}</tb>
+                <td>${strattoint[document.getElementById('food_strat_0').value]} ${document.getElementById('food_stock_0').innerHTML}</tb>
+                <td>${strattoint[document.getElementById('food_strat_1').value]} ${document.getElementById('food_stock_1').innerHTML}</tb>
+                <td>${strattoint[document.getElementById('food_strat_2').value]} ${document.getElementById('food_stock_2').innerHTML}</tb>
+            </tr>
+            <tr>
+                <td class="td_border_right">纪念品</tb>
+                <td>${document.getElementById('toy_total').value}</tb>
+                <td>${strattoint[document.getElementById('toy_strat_0').value]} ${document.getElementById('toy_stock_0').innerHTML}</tb>
+                <td>${strattoint[document.getElementById('toy_strat_1').value]} ${document.getElementById('toy_stock_1').innerHTML}</tb>
+            </tr>
+            `
+
         }
 
         function update_settings() {
