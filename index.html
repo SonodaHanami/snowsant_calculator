@@ -1484,10 +1484,16 @@
             if (t > 1691784000000) {
                 drink_buyin = [50, 70, 95]
                 food_buyin = [25, 50, 80]
-                document.getElementById('drink_fw_0').value = 195
-                document.getElementById('drink_fw_1').value = 205
-                document.getElementById('food_fw_0').value = 155
-                document.getElementById('food_fw_1').value = 165
+                document.getElementById('drink_fw_0').value = 345
+                document.getElementById('drink_fw_1').value = 355
+                document.getElementById('food_fw_0').value = 275
+                document.getElementById('food_fw_1').value = 285
+            }
+
+            if (t > 1691784000000 && t < 1691784600000) {
+                document.getElementById('table_main_0').innerHTML = `<h2>维护中，正在确认最新的售卖定价范围，请稍候，预计4:10完成</h2>`
+                document.getElementById('table_main_1').style.display = 'none'
+                document.getElementById('table_main_2').style.display = 'none'
             }
         }
 
