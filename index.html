@@ -474,7 +474,7 @@
     <table class="table_text" id="table_main_2">
         <tr class="tr_border_bottom">
             <th class="td_border_right" style="font-size: 2em; font-weight: bold;">剩余打探次数</th>
-            <td id="td_4_1" colspan="1" class=""><input type="number" id="detect" min="0" value="5"  style="font-size: 2em; font-weight: bold;"></td>
+            <td id="td_4_1" colspan="1" class=""><input type="number" id="detect" min="0" value="6"  style="font-size: 2em; font-weight: bold;"></td>
             <td id="td_4_2"></td>
             <td id="td_4_3" colspan="2" rowspan="1">
                 <div class="div_button" onclick="first_phase_greedy();">贪心算法判断进货策略</div>
@@ -1484,16 +1484,10 @@
             if (t > 1691784000000) {
                 drink_buyin = [50, 70, 95]
                 food_buyin = [25, 50, 80]
-                document.getElementById('drink_fw_0').value = 345
-                document.getElementById('drink_fw_1').value = 355
-                document.getElementById('food_fw_0').value = 275
-                document.getElementById('food_fw_1').value = 285
-            }
-
-            if (t > 1691784000000 && t < 1691784600000) {
-                document.getElementById('table_main_0').innerHTML = `<h2>维护中，正在确认最新的售卖定价范围，请稍候，预计4:10完成</h2>`
-                document.getElementById('table_main_1').style.display = 'none'
-                document.getElementById('table_main_2').style.display = 'none'
+                document.getElementById('drink_fw_0').value = 245
+                document.getElementById('drink_fw_1').value = 255
+                document.getElementById('food_fw_0').value = 195
+                document.getElementById('food_fw_1').value = 205
             }
         }
 
