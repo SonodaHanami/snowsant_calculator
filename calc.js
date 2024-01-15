@@ -1,4 +1,161 @@
-let last_toggle = 0;
+let url_array = location.href.split('/')
+let file_name = url_array[url_array.length - 1]
+
+const LG = file_name == 'ja.html' ? 'ja' : file_name == 'en.html' ? 'en' : 'zh-CN'
+
+let TEXT = {
+    'drink': {
+        'zh-CN': '饮品',
+        'ja': '飲み物',
+        'en': 'Drinks',
+    },
+    'food': {
+        'zh-CN': '食品',
+        'ja': '食べ物',
+        'en': 'Food',
+    },
+    'toy': {
+        'zh-CN': '纪念品',
+        'ja': '記念品',
+        'en': 'Souvenirs',
+    },
+    'snowsant': {
+        'zh-CN': '雪雉',
+        'ja': 'スノーザント',
+        'en': 'Snowsant',
+    },
+    'opponent': {
+        'zh-CN': '对手',
+        'ja': '相手',
+        'en': 'Opponent',
+    },
+    'total': {
+        'zh-CN': '总量',
+        'ja': '総量',
+        'en': 'total',
+    },
+    'settings': {
+        'zh-CN': '设置',
+        'ja': '設定',
+        'en': 'Settings',
+    },
+    'save_settings': {
+        'zh-CN': '保存设置',
+        'ja': '設定を保存する',
+        'en': 'Save settings',
+    },
+    'result_here': {
+        'zh-CN': '这里显示计算结果',
+        'ja': '計算結果はここに表示される',
+        'en': 'The result will be here',
+    },
+    'all_strat_needed': {
+        'zh-CN': '必须填写完所有对手策略',
+        'ja': 'すべての相手のすべての策略を入力してください',
+        'en': 'You have to enter all strategies of all opponents',
+    },
+    'illegal_data': {
+        'zh-CN': '数据异常，请检查定价是否填写错误',
+        'ja': 'データ異常、入力した価格をチェックしてください',
+        'en': 'Illegal data found, please check the entered price',
+    },
+    'check_ok': {
+        'zh-CN': '确认无误，开始计算！',
+        'ja': '間違いなし、計算開始！',
+        'en': 'All correct, calculation start!',
+    },
+    'calculation_start': {
+        'zh-CN': '开始计算',
+        'ja': '計算開始',
+        'en': 'Calculation start',
+    },
+    'calculate_purchase_quantity_and_check': {
+        'zh-CN': '计算进货数量并比对',
+        'ja': '購入数量を計算&確認',
+        'en': 'Calculate and confirm the purchase quantity',
+    },
+    'purchase_quantity_calculated': {
+        'zh-CN': '进货数量计算完毕，请比对是否与游戏中显示一致，然后可以开始计算。',
+        'ja': '購入数量計算完了、ゲーム内の表示と一致しているか確認してから計算開始してください。',
+        'en': 'The purchase quantity has been calculated. Please check whether it is consistent with the display in the game, and then start the calculation.',
+    },
+    'purchase_strategy_calculated': {
+        'zh-CN': '进货策略计算完毕，请按提示进货<span>（注意<b>不要手滑</b>点掉进货结果界面，总之先<b>截个图</b>吧）</span>，然后补全其他对手的进货策略，再计算进货数量并比对',
+        'ja': '購入策略計算完了、結果通りに購入してください。（購入結果の画面は<b>再表示できない</b>ので，とりあえず<b>スクリーンショット</b>しよう）他の相手の購入策略も入力し、購入数量を計算して確認してください',
+        'en': 'The purchase strategy has been calculated. (The purchase result screen <b>cannot be displayed again</b>, so let\'s <b>take a screenshot</b> for now.) Please also enter other opponents\' purchase strategies and calculate and confirm the purchase quantity.',
+    },
+    'set_drink_price': {
+        'zh-CN': '请给饮品定价并售卖，然后点击“开始计算”进入下一步',
+        'ja': '飲み物に値段を付けて販売して、“計算開始”をクリックしてください',
+        'en': 'Please price the drinks and sell them, then click "Calculation start"',
+    },
+    'set_food_price': {
+        'zh-CN': '请给食品定价并售卖，然后点击“开始计算”进入下一步',
+        'ja': '食べ物に値段を付けて販売、“計算開始”をクリックしてください',
+        'en': 'Please price the food and sell them, then click "Calculation start"',
+    },
+    'ask_drink_price': {
+        'zh-CN': '请打探一次饮品售价并在输入框中输入，然后点击“开始计算”',
+        'ja': '飲み物の価格を一回問い合わせて入力して、“計算開始”をクリックしてください',
+        'en': 'Please ask the price of the drinks for one time and enter it, then click "Calculation start"',
+    },
+    'ask_drink_price_2': {
+        'zh-CN': '请<span><b>再</b></span>打探一次饮品售价并在输入框中输入，然后点击“开始计算”',
+        'ja': '飲み物の価格を<span><b>もう一回</b></span>問い合わせて入力して、“計算開始”をクリックしてください',
+        'en': 'Please ask the price of the drinks for </b></span>one more time</b></span> and enter it, then click "Calculation start"',
+    },
+    'ask_food_price': {
+        'zh-CN': '请打探一次食品售价并在输入框中输入，然后点击“开始计算”',
+        'ja': '食べ物の価格を一回問い合わせて入力して、“計算開始”をクリックしてください',
+        'en': 'Please ask the price of the food for one time and enter it, then click "Calculation start"',
+    },
+    'ask_food_price_2': {
+        'zh-CN': '请<span><b>再</b></span>打探一次食品售价并在输入框中输入，然后点击“开始计算”',
+        'ja': '食べ物の価格を<span><b>もう一回</b></span>問い合わせて入力して、“計算開始”をクリックしてください',
+        'en': 'Please ask the price of the food for </b></span>one more time</b></span> and enter it, then click "Calculation start"',
+    },
+    'ask_toy_price': {
+        'zh-CN': '请打探一次纪念品售价并在输入框中输入，然后点击“开始计算”',
+        'ja': '記念品の価格を一回問い合わせて入力して、“計算開始”をクリックしてください',
+        'en': 'Please ask the price of the souvenirs for one time and enter it, then click "Calculation start"',
+    },
+    'ask_price_result': {
+        'zh-CN': '打探 __ASK_DRINK__ 次饮品进货，打探 __ASK_FOOD__ 次食品进货，打探 __ASK_TOY__ 次纪念品进货，然后输入打探结果并再次点击此按钮',
+        'ja': '飲み物 __ASK_DRINK__ 回、食べ物 __ASK_FOOD__ 回、記念品 __ASK_TOY__ 回を問い合わせて、結果を入力して、もう一度ボタンをクリックしてください',
+        'en': 'Please ask __ASK_DRINK__ time(s) for drinks, __ASK_FOOD__ time(s) for food and __ASK_TOY__ time(s) for souvenirs, input the asking result, and then click the button once more',
+    },
+    'set_price': {
+        'zh-CN': '定价',
+        'ja': '定価',
+        'en': 'Set price',
+    },
+    'estimated_revenue_is': {
+        'zh-CN': '预计收益为',
+        'ja': '推定収益は',
+        'en': 'the estimated revenue is',
+    },
+    'purchasing_stage_summary': {
+        'zh-CN': '进货阶段总结',
+        'ja': '購入ステージの概要',
+        'en': 'Purchasing stage summary',
+    },
+    'toy_dumping_ok': {
+        'zh-CN': '若有积压纪念品，可以适当减价10抛售',
+        'ja': '記念品が余っている場合は、適当に10の割引で販売できます',
+        'en': 'If you have a backlog of souvenirs, you can sell them off at a discount of 10',
+    },
+    'calculation_completed': {
+        'zh-CN': '计算完成！享受你的收益吧！',
+        'ja': '計算完了！利益を楽しみましょう！',
+        'en': 'Calculation completed! Enjoy your revenue~',
+    },
+    'no_cost_calculation': {
+        'zh-CN': '（没有计算成本）',
+        'ja': '（コスト計算なし）',
+        'en': '(no cost calculation)',
+    },
+}
+
 let strattoint = {
     "激进": 2,
     "稳健": 1,
@@ -9,12 +166,17 @@ let strattoint = {
     1: "稳健",
     0: "保守",
 }
+let last_toggle = 0;
 let drink_buyin = [20, 28, 38]
 let food_buyin = [10, 20, 32]
 let toy_buyin = [50, 100, 200]
 
 let N = 0
 let C = 0
+
+function get_text(text_name) {
+    return TEXT[text_name][LG]
+}
 
 function sum(array) {
     return array.reduce((accumulator, currentValue) => {return accumulator + currentValue}, 0)
@@ -306,7 +468,7 @@ function calculate() {
         safe_int(document.getElementById('toy_fw_1').value) < 1 ||
         safe_int(document.getElementById('toy_fw_0').value) > safe_int(document.getElementById('toy_fw_1').value)
     ) {
-        document.getElementById('L8').innerHTML = '数据异常，请检查定价是否填写错误'
+        document.getElementById('L8').innerHTML = get_text('illegal_data')
         return
     }
     minus = -1
@@ -319,7 +481,7 @@ function calculate() {
                 prices=[0, safe_int(document.getElementById('drink_dt_0').value), safe_int(document.getElementById('drink_dt_1').value)],
                 bonus=[safe_int(document.getElementById('bonus_1').value), safe_int(document.getElementById('bonus_2').value), safe_int(document.getElementById('bonus_3').value)],
             )
-            txt = `定价${best[0]}，预计收益为${best[1]}`
+            txt = `${get_text('set_price')}${best[0]}，${get_text('estimated_revenue_is')}${best[1]}`
             document.getElementById('td_1_7').innerHTML = txt
             document.getElementById(`td_1_7`).classList.add('current_step')
             document.getElementById(`td_4_3`).classList.add('current_step')
@@ -332,7 +494,7 @@ function calculate() {
                 prices=[0, safe_int(document.getElementById('food_dt_0').value), safe_int(document.getElementById('food_dt_1').value)],
                 bonus=[safe_int(document.getElementById('bonus_1').value), safe_int(document.getElementById('bonus_2').value), safe_int(document.getElementById('bonus_3').value)],
             )
-            txt = `定价${best[0]}，预计收益为${best[1]}`
+            txt = `${get_text('set_price')}${best[0]}，${get_text('estimated_revenue_is')}${best[1]}`
             document.getElementById('td_2_7').innerHTML= txt
             document.getElementById(`td_2_7`).classList.add('current_step')
         }
@@ -364,7 +526,7 @@ function calculate() {
             }
 
             result += bonus[0]
-            txt = `定价${p}，预计收益为${result}<br>若有积压纪念品，可以适当减价10抛售`
+            txt = `${get_text('set_price')}${p}，${get_text('estimated_revenue_is')}${result}<br>${get_text('toy_dumping_ok')}`
             let best_drink = set_price(
                 min_price=safe_int(document.getElementById('drink_fw_0').value),
                 max_price=safe_int(document.getElementById('drink_fw_1').value),
@@ -391,11 +553,11 @@ function calculate() {
                     cost += safe_int(toy_buyin[st_toy]) * safe_int(safe_int(document.getElementById('toy_stock_0').innerHTML))
                 }
             }
-            txt_big = `计算完成！享受你的收益吧！预期收益是${best_food[1] + best_drink[1] + result - cost}`
+            txt_big = `${get_text('calculation_completed')}${get_text('estimated_revenue_is')}${best_food[1] + best_drink[1] + result - cost}`
             document.getElementById('td_4_3').innerHTML = ''
             document.getElementById(`L8`).classList.add('current_step')
             if (cost < 1) {
-                txt_big += "（没有计算成本）"
+                txt_big += get_text('no_cost_calculation')
             }
             document.getElementById('td_3_7').innerHTML = txt
             document.getElementById(`td_3_7`).classList.add('current_step')
@@ -419,8 +581,8 @@ function calculate() {
                 bonus=[safe_int(document.getElementById('bonus_1').value), safe_int(document.getElementById('bonus_2').value), safe_int(document.getElementById('bonus_3').value)],
             )
             if (best_drink.length < 3 || best_drink[2] + best_drink[3] <= 0.01) {
-                txt_big = "请给饮品定价并售卖，然后点击“开始计算”进入下一步"
-                txt = `定价${best_drink[0]}，预计收益为${best_drink[1]}`
+                txt_big = get_text('set_drink_price')
+                txt = `${get_text('set_price')}${best_drink[0]}，${get_text('estimated_revenue_is')}${best_drink[1]}`
                 document.getElementById('td_1_7').innerHTML = txt
                 document.getElementById(`td_1_7`).classList.add('current_step')
                 document.getElementById(`td_4_3`).classList.add('current_step')
@@ -444,18 +606,18 @@ function calculate() {
                 // console.log(best_strat)
                 if (best_strat[0][0] > 0) {
                     if (safe_int(document.getElementById('drink_dt_0').value) == 0 && safe_int(document.getElementById('drink_dt_1').value) == 0) {
-                        txt_big = "请打探一次饮品售价并在输入框中输入，然后点击“开始计算”"
+                        txt_big = get_text('ask_drink_price')
                     }
                     else {
-                        txt_big = `请<span><b>再</b></span>打探一次饮品售价并在输入框中输入，然后点击“开始计算”`
+                        txt_big = get_text('ask_drink_price_2')
                     }
                     document.getElementById(`td_1_5`).classList.add('current_step')
                     document.getElementById(`td_1_6`).classList.add('current_step')
                     document.getElementById(`td_4_3`).classList.add('current_step')
                 }
                 else {
-                    txt_big = "请给饮品定价并售卖，然后点击“开始计算”进入下一步"
-                    txt = `定价${best_drink[0]}，预计收益为${best_drink[1]}`
+                    txt_big = get_text('set_drink_price')
+                    txt = `${get_text('set_price')}${best_drink[0]}，${get_text('estimated_revenue_is')}${best_drink[1]}`
                     document.getElementById('td_1_7').innerHTML = txt
                     document.getElementById(`td_1_7`).classList.add('current_step')
                     document.getElementById(`td_4_3`).classList.add('current_step')
@@ -472,8 +634,8 @@ function calculate() {
                 bonus=[safe_int(document.getElementById('bonus_1').value), safe_int(document.getElementById('bonus_2').value), safe_int(document.getElementById('bonus_3').value)],
             )
             if (best_food.length < 3 || best_food[2] + best_food[3] <= 0.01) {
-                txt_big = "请给食品定价并售卖，然后点击“开始计算”进入下一步"
-                txt = `定价${best_food[0]}，预计收益为${best_food[1]}`
+                txt_big = get_text('set_food_price')
+                txt = `${get_text('set_price')}${best_food[0]}，${get_text('estimated_revenue_is')}${best_food[1]}`
                 document.getElementById('td_2_7').innerHTML = txt
                 document.getElementById(`td_2_7`).classList.add('current_step')
                 document.getElementById(`td_4_3`).classList.add('current_step')
@@ -494,21 +656,21 @@ function calculate() {
                 let best_strat = best_strategy([next_step_gain, toy_gain], detect_time)
                 if (best_strat[0][0] > 0) {
                     if (safe_int(document.getElementById('food_dt_0').value) == 0 && safe_int(document.getElementById('food_dt_1').value) == 0) {
-                        txt_big = "请打探一次食品售价并在输入框中输入，然后点击“开始计算”"
+                        txt_big = get_text('ask_food_price')
                         document.getElementById(`td_2_5`).classList.add('current_step')
                         document.getElementById(`td_2_6`).classList.add('current_step')
                         document.getElementById(`td_4_3`).classList.add('current_step')
                     }
                     else {
-                        txt_big = `请<span><b>再</b></span>打探一次食品售价并在输入框中输入，然后点击“开始计算”`
+                        txt_big = get_text('ask_food_price_2')
                         document.getElementById(`td_2_5`).classList.add('current_step')
                         document.getElementById(`td_2_6`).classList.add('current_step')
                         document.getElementById(`td_4_3`).classList.add('current_step')
                     }
                 }
                 else {
-                    txt_big = "请给食品定价并售卖，然后点击“开始计算”进入下一步"
-                    txt = `定价${best_food[0]}，预计收益为${best_food[1]}`
+                    txt_big = get_text('ask_food_price')
+                    txt = `${get_text('set_price')}${best_food[0]}，${get_text('estimated_revenue_is')}${best_food[1]}`
                     document.getElementById('td_2_7').innerHTML = txt
                     document.getElementById(`td_2_7`).classList.add('current_step')
                     document.getElementById(`td_4_3`).classList.add('current_step')
@@ -517,7 +679,7 @@ function calculate() {
             }
         }
         else if (!document.getElementById('td_3_7').innerHTML) {
-            txt_big = "请打探一次纪念品售价并在输入框中输入，然后点击“开始计算”"
+            txt_big = get_text('ask_toy_price')
             document.getElementById(`td_3_5`).classList.add('current_step')
             document.getElementById(`td_3_6`).classList.add('current_step')
             document.getElementById(`td_4_3`).classList.add('current_step')
@@ -648,7 +810,7 @@ function cal_jinhuo() {
     strats[2] = document.getElementById('drink_strat_2').value
     for (let i = 0; i < 3; i++) {
         if (strats[i] == -1) {
-            document.getElementById('L8').innerHTML = '必须填写完所有对手策略'
+            document.getElementById('L8').innerHTML = get_text('all_strat_needed')
             return
         }
     }
@@ -665,7 +827,7 @@ function cal_jinhuo() {
     strats[2] = document.getElementById('food_strat_2').value
     for (let i = 0; i < 3; i++) {
         if (strats[i] == -1) {
-            document.getElementById('L8').innerHTML = '必须填写完所有对手策略'
+            document.getElementById('L8').innerHTML = get_text('all_strat_needed')
             return
         }
     }
@@ -681,7 +843,7 @@ function cal_jinhuo() {
     strats[1] = document.getElementById('toy_strat_1').value
     for (let i = 0; i < 2; i++) {
         if (strats[i] == -1) {
-            document.getElementById('L8').innerHTML = '必须填写完所有对手策略'
+            document.getElementById('L8').innerHTML = get_text('all_strat_needed')
             return
         }
     }
@@ -698,8 +860,8 @@ function cal_jinhuo() {
         document.getElementById(`toy_stock_1`).innerHTML = total_goods * 0.6
         document.getElementById(`toy_stock_0`).innerHTML = total_goods * 0.4
     }
-    document.getElementById('td_4_3').innerHTML = `<div class="div_button" onclick="switch_table(); calculate();">确认无误，开始计算！</div>`
-    document.getElementById('L8').innerHTML = '进货数量计算完毕，请比对是否与游戏中显示一致，然后可以开始计算。'
+    document.getElementById('td_4_3').innerHTML = `<div class="div_button" onclick="switch_table(); calculate();">${get_text('check_ok')}</div>`
+    document.getElementById('L8').innerHTML = get_text('purchase_quantity_calculated')
     // 高亮
     reset_td_class()
     document.getElementById(`td_1_2`).classList.add('current_step')
@@ -750,12 +912,12 @@ function determine_input_strategy(detects=0) {
     else {
         document.getElementById('toy_strat_0').value = 2
     }
-    document.getElementById('L8').innerHTML = '进货策略计算完毕，请按提示进货<span>（注意<b>不要手滑</b>点掉进货结果界面，总之先<b>截个图</b>吧）</span>，然后补全其他对手的进货策略，再计算进货数量并比对'
+    document.getElementById('L8').innerHTML = get_text('purchase_strategy_calculated')
     document.getElementById(`td_1_2`).classList.add('current_step')
     document.getElementById(`td_2_2`).classList.add('current_step')
     document.getElementById(`td_3_2`).classList.add('current_step')
     document.getElementById(`td_4_3`).classList.add('current_step')
-    document.getElementById(`td_4_3`).innerHTML = `<div class="div_button" onclick="cal_jinhuo();">计算进货数量并比对</div>`
+    document.getElementById(`td_4_3`).innerHTML = `<div class="div_button" onclick="cal_jinhuo();">${get_text('calculate_purchase_quantity_and_check')}</div>`
     return
 }
 
@@ -898,7 +1060,7 @@ function first_phase_greedy() {
     console.timeEnd('穷举策略')
     // console.log(max_earn, best_strat)
     if (sum(best_strat) > 0) {
-        document.getElementById('L8').innerHTML = `打探 ${best_strat[0]} 次饮品进货，打探 ${best_strat[1]} 次食品进货，打探 ${best_strat[2]} 次纪念品进货，然后输入打探结果并再次点击此按钮`
+        document.getElementById('L8').innerHTML = get_text('ask_price_result').replace('__ASK_DRINK__', best_strat[0]).replace('__ASK_FOOD__', best_strat[1]).replace('__ASK_TOY__', best_strat[2])
         document.getElementById('detect').value = Math.max(0, detect_time - sum(best_strat))
         document.getElementById(`td_4_3`).classList.add('current_step')
     }
@@ -910,11 +1072,11 @@ function first_phase_greedy() {
 function handle_button_settings () {
     if (document.getElementById('table_settings').style.display == 'none') {
         document.getElementById('table_settings').style.display = '';
-        document.getElementById('div_settings').innerHTML = "保存设置";
+        document.getElementById('div_settings').innerHTML = get_text('save_settings');
     }
     else {
         document.getElementById('table_settings').style.display = 'none';
-        document.getElementById('div_settings').innerHTML = '设置';
+        document.getElementById('div_settings').innerHTML = get_text('settings');
     }
 }
 
@@ -924,7 +1086,7 @@ function reset_calc() {
     document.getElementById('td_2_7').innerHTML = ''
     document.getElementById('td_3_7').innerHTML = ''
     document.getElementById('detect').value = 0
-    document.getElementById('L8').innerHTML = '这里显示计算结果'
+    document.getElementById('L8').innerHTML = get_text('result_here')
 }
 
 function reset_td_class() {
@@ -940,31 +1102,31 @@ function reset_td_class() {
 function switch_table() {
     document.getElementById('table_main_0').style.display = 'none'
     document.getElementById('table_main_1').style.display = ''
-    document.getElementById('td_4_3').innerHTML = `<div class="div_button" onclick="calculate();">开始计算</div>`
+    document.getElementById('td_4_3').innerHTML = `<div class="div_button" onclick="calculate();">${get_text('check_ok')}</div>`
     document.getElementById('table_main_3').innerHTML = `
     <tr class="tr_border_bottom">
-        <th class="td_border_right">进货阶段总结</th>
-        <td>总量</tb>
-        <td>自己</tb>
-        <td>对手A</tb>
-        <td>对手B</tb>
+        <th class="td_border_right">${get_text('purchasing_stage_summary')}</th>
+        <td>${get_text('total')}</tb>
+        <td>${get_text('snowsant')}</tb>
+        <td>${get_text('opponent')}A</tb>
+        <td>${get_text('opponent')}B</tb>
     </tr>
     <tr>
-        <td class="td_border_right">饮品</tb>
+        <td class="td_border_right">${get_text('drink')}</tb>
         <td>${document.getElementById('drink_total').value}</tb>
         <td>${strattoint[document.getElementById('drink_strat_0').value]} ${document.getElementById('drink_stock_0').innerHTML}</tb>
         <td>${strattoint[document.getElementById('drink_strat_1').value]} ${document.getElementById('drink_stock_1').innerHTML}</tb>
         <td>${strattoint[document.getElementById('drink_strat_2').value]} ${document.getElementById('drink_stock_2').innerHTML}</tb>
     </tr>
     <tr>
-        <td class="td_border_right">食品</tb>
+        <td class="td_border_right">${get_text('food')}</tb>
         <td>${document.getElementById('food_total').value}</tb>
         <td>${strattoint[document.getElementById('food_strat_0').value]} ${document.getElementById('food_stock_0').innerHTML}</tb>
         <td>${strattoint[document.getElementById('food_strat_1').value]} ${document.getElementById('food_stock_1').innerHTML}</tb>
         <td>${strattoint[document.getElementById('food_strat_2').value]} ${document.getElementById('food_stock_2').innerHTML}</tb>
     </tr>
     <tr>
-        <td class="td_border_right">纪念品</tb>
+        <td class="td_border_right">${get_text('toy')}</tb>
         <td>${document.getElementById('toy_total').value}</tb>
         <td>${strattoint[document.getElementById('toy_strat_0').value]} ${document.getElementById('toy_stock_0').innerHTML}</tb>
         <td>${strattoint[document.getElementById('toy_strat_1').value]} ${document.getElementById('toy_stock_1').innerHTML}</tb>
@@ -975,7 +1137,7 @@ function switch_table() {
 
 function update_settings() {
     let t = +new Date()
-    if (t > 1691092800000) {
+    if (t > 1705604400000) {
         drink_buyin = [30, 42, 57]
         food_buyin = [15, 30, 48]
         document.getElementById('drink_fw_0').value = 95
@@ -983,7 +1145,7 @@ function update_settings() {
         document.getElementById('food_fw_0').value = 75
         document.getElementById('food_fw_1').value = 85
     }
-    if (t > 1691524800000) {
+    if (t > 1706036400000) {
         drink_buyin = [40, 56, 76]
         food_buyin = [20, 40, 64]
         document.getElementById('drink_fw_0').value = 195
@@ -991,7 +1153,7 @@ function update_settings() {
         document.getElementById('food_fw_0').value = 155
         document.getElementById('food_fw_1').value = 165
     }
-    if (t > 1691784000000) {
+    if (t > 1706295600000) {
         drink_buyin = [50, 70, 95]
         food_buyin = [25, 50, 80]
         document.getElementById('drink_fw_0').value = 245

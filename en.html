@@ -1,6 +1,6 @@
 <html>
 <head>
-    <title>雪雉小店终极策略</title>
+    <title>Snowsant's Shop Final Strategy</title>
     <style>
         body {
             padding-top: 10px;
@@ -268,43 +268,43 @@
     <table class="table_header">
         <tr>
             <th colspan="3">
-                雪雉小店终极策略
+                Snowsant's Shop Final Strategy
             </th>
             <td>
-                <div class="div_button" id="div_settings" onclick="handle_button_settings();">设置</div>
+                <div class="div_button" id="div_settings" onclick="handle_button_settings();">Settings</div>
             </td>
             <td>
-                <div class="div_button" onclick="location.reload();">清空（刷新）</div>
+                <div class="div_button" onclick="location.reload();">Clear(Refresh)</div>
             </td>
         </tr>
     </table>
     <table class="table_text" id="table_settings" style="display: none;">
         <tr>
-            <th>这是设置</td>
+            <th>Settings</td>
         </tr>
         <tr>
-            <td>语言</td>
+            <td>Language</td>
             <td>
-                中文 / <a href="./ja.html" target="_self">日本語</a> / <a href="./en.html" target="_self">English</a>
+                English / <a href="./index.html" target="_self">中文</a> / <a href="./ja.html" target="_self">日本語</a>
             </td>
         </tr>
         <tr>
-            <td>饮品定价范围</td>
+            <td>Drink pricing range</td>
             <td><input type="number" id="drink_fw_0" min="0" value="45"></td>
             <td class=""><input type="number" id="drink_fw_1" min="0" value="55"></td>
         </tr>
         <tr>
-            <td>食品定价范围</td>
+            <td>Food pricing range</td>
             <td><input type="number" id="food_fw_0" min="0" value="35"></td>
             <td class=""><input type="number" id="food_fw_1" min="0" value="45"></td>
         </tr>
         <tr>
-            <td>纪念品定价范围</td>
+            <td>Souvenir pricing range</td>
             <td><input type="number" id="toy_fw_0" min="0" value="950"></td>
             <td class=""><input type="number" id="toy_fw_1" min="0" value="1050"></td>
         </tr>
         <tr class="tr_border_bottom">
-            <td class="">销售名次奖励</td>
+            <td class="">Sales ranking reward</td>
             <td class=""><input type="number" id="bonus_1" min="0" value="5000"></td>
             <td class=""><input type="number" id="bonus_2" min="0" value="2000"></td>
             <td class=""><input type="number" id="bonus_3" min="0" value="1000"></td>
@@ -313,132 +313,134 @@
     <table class="table_text">
         <tr>
             <td colspan="4" id="td_notice_0" class="">
-                <a href="https://www.bilibili.com/video/BV1444y1w7eJ/" target="_blank">垄断倾销，不再奏效！雪雉小店策略下篇，和计算器正式版！</a> 出现BUG可以私信作者 QQ交流群951454445
+                <a href="https://www.bilibili.com/video/BV1444y1w7eJ/" target="_blank">垄断倾销，不再奏效！雪雉小店策略下篇，和计算器正式版！</a> The origin video about the principle!<br>
                 <br>
-                <a href="https://www.bilibili.com/video/BV1F44y1A7mz/" target="_blank">囤积居奇，垄断牟利！雪雉的小店商战课程</a> 纪念品的囤货与倾销可以看这个
+                <a href="https://www.bilibili.com/video/BV1F44y1A7mz/" target="_blank">囤积居奇，垄断牟利！雪雉的小店商战课程</a> Another video about hoarding and dumping of souvenirs<br>
             </td>
             <td colspan="1">
-                <p>原作者：<a href="https://space.bilibili.com/246187036" target="_blank">他的十天Histensky</a></p>
+                <p>Author:<a href="https://space.bilibili.com/246187036" target="_blank">他的十天Histensky</a></p>
             </td>
         </tr>
         <tr>
             <td colspan="4" id="td_notice_1" class="">
-                注意看对手的<span>图标</span>，不要搞反两个对手的顺序。在任何时间点发现之前填错或点错了，请点右上角<span>刷新</span>↗
+                Pay attention to the opponent's <span>icon</span> and do not confuse them. <br>
+                If you find that entered or clicked wrongly anytime, please click<span>Refresh</span>↗.<br>
             </td>
             <td colspan="1">
-                <p>移　植：<a href="https://space.bilibili.com/533170" target="_blank">羽波</a></p>
+                <p>Transplant：<a href="https://space.bilibili.com/533170" target="_blank">羽波</a></p>
             </td>
         </tr>
         <tr>
             <td colspan="4" id="td_notice_2" class="">
-                当前步骤对应的位置会有<span class="current_step" style="color: #000;">背景色高亮提示</span>，有疑问可以看看 <a href="https://www.bilibili.com/video/BV1f44y1w7Y2/" target="_blank">网页版实机演示视频</a> 或者说明书→
+                The current step will be <span class="current_step" style="color: #000;">background color highlighted</span>. Maybe <a href="https://www.bilibili.com/video/BV1f44y1w7Y2/" target="_blank">this demo video</a> or the Manual→ could help you.<br>
+                You can raise a <a href="https://github.com/SonodaHanami/snowsant_calculator/issues" target="_blank">Github issue</a> if you find any bug.<br>
             </td>
             <td colspan="1" class="">
-                <a href="./help.html" target="_blank">查看说明书</a>
+                <a href="./help.html" target="_blank">Manual</a>
             </td>
         </tr>
     </table>
     <table class="table_text" id="table_main_0">
         <tr class="tr_border_bottom">
-            <th class="td_border_right aite_A text_center">进货阶段</th>
+            <th class="td_border_right aite_A text_center">Purchasing stage</th>
             <th id="th_2" colspan="4" class="text_center">
-                进货策略
+                Purchase strategy
             </th>
         </tr>
         <tr>
             <td class="td_border_right"></td>
-            <td id="td_0_1">总量</td>
-            <td id="td_0_2">自己</td>
-            <td id="td_0_3" class="aite_A">对手A（钟表图标）</td>
-            <td id="td_0_4" class="">对手B</td>
+            <td id="td_0_1">Total</td>
+            <td id="td_0_2">Snowsant</td>
+            <td id="td_0_3" class="aite_A">Opponent A(clock icon)</td>
+            <td id="td_0_4" class="">Opponent B</td>
         </tr>
         <tr>
-            <th class="td_border_right tr_border_bottom">饮品</th>
+            <th class="td_border_right tr_border_bottom">Drink</th>
             <td id="td_1_1"><input type="number" id="drink_total" min="0" value="0" step="90"><br>　</td>
             <td id="td_1_2">
                 <select name="drink_strat_0" id="drink_strat_0">
                     <option value="-1"></option>
-                    <option value="0">保守</option>
-                    <option value="1">稳健</option>
-                    <option value="2">激进</option>
+                    <option value="0">Conservative</option>
+                    <option value="1">Steady</option>
+                    <option value="2">Radical</option>
                 </select>
                 <br>
                 <span id="drink_stock_0">?</span>
             </td>
             <td id="td_1_3">
                 <select name="drink_strat_1" id="drink_strat_1">
-                    <option value="-1">未知</option>
-                    <option value="0">保守</option>
-                    <option value="1">稳健</option>
-                    <option value="2">激进</option>
+                    <option value="-1">Unknown</option>
+                    <option value="0">Conservative</option>
+                    <option value="1">Steady</option>
+                    <option value="2">Radical</option>
                 </select>
                 <br>
                 <span id="drink_stock_1">?</span>
             </td>
             <td id="td_1_4" class="">
                 <select name="drink_strat_2" id="drink_strat_2">
-                    <option value="-1">未知</option>
-                    <option value="0">保守</option>
-                    <option value="1">稳健</option>
-                    <option value="2">激进</option>
+                    <option value="-1">Unknown</option>
+                    <option value="0">Conservative</option>
+                    <option value="1">Steady</option>
+                    <option value="2">Radical</option>
                 </select>
                 <br>
                 <span id="drink_stock_2">?</span>
             </td>
         </tr>
         <tr>
-            <th class="td_border_right tr_border_bottom">食品</th>
+            <th class="td_border_right tr_border_bottom">Food</th>
             <td id="td_2_1"><input type="number" id="food_total" min="0" value="0" step="90"><br>　</td>
             <td id="td_2_2">
                 <select name="food_strat_0" id="food_strat_0">
                     <option value="-1"></option>
-                    <option value="0">保守</option>
-                    <option value="1">稳健</option>
-                    <option value="2">激进</option>
+                    <option value="0">Conservative</option>
+                    <option value="1">Steady</option>
+                    <option value="2">Radical</option>
                 </select>
                 <br>
                 <span id="food_stock_0">?</span>
             </td>
             <td id="td_2_3">
                 <select name="food_strat_1" id="food_strat_1">
-                    <option value="-1">未知</option>
-                    <option value="0">保守</option>
-                    <option value="1">稳健</option>
-                    <option value="2">激进</option>
+                    <option value="-1">Unknown</option>
+                    <option value="0">Conservative</option>
+                    <option value="1">Steady</option>
+                    <option value="2">Radical</option>
                 </select>
                 <br>
                 <span id="food_stock_1">?</span>
             </td>
             <td id="td_2_4" class="">
                 <select name="food_strat_2" id="food_strat_2">
-                    <option value="-1">未知</option>
-                    <option value="0">保守</option>
-                    <option value="1">稳健</option>
-                    <option value="2">激进</option>
+                    <option value="-1">Unknown</option>
+                    <option value="0">Conservative</option>
+                    <option value="1">Steady</option>
+                    <option value="2">Radical</option>
                 </select>
                 <br>
                 <span id="food_stock_2">?</span>
             </td>
         </tr>
         <tr class="tr_border_bottom">
-            <th class="td_border_right">纪念品</th>
+            <th class="td_border_right">Souvenir</th>
             <td id="td_3_1"><input type="number" id="toy_total" min="0" value="0" step="10"><br>　</td>
             <td id="td_3_2">
                 <select name="toy_strat_0" id="toy_strat_0">
                     <option value="-1"></option>
-                    <option value="0">保守</option>
-                    <option value="1">稳健</option>
-                    <option value="2">激进</option>
+                    <option value="0">Conservative</option>
+                    <option value="1">Steady</option>
+                    <option value="2">Radical</option>
                 </select>
                 <br>
                 <span id="toy_stock_0">?</span>
             </td>
             <td id="td_3_3">
                 <select name="toy_strat_1" id="toy_strat_1">
-                    <option value="-1">未知</option>
-                    <option value="0">保守</option>
-                    <option value="1">稳健</option>
-                    <option value="2">激进</option>
+                    <option value="-1">Unknown</option>
+                    <option value="0">Conservative</option>
+                    <option value="1">Steady</option>
+                    <option value="2">Radical</option>
                 </select>
                 <br>
                 <span id="toy_stock_1">?</span>
@@ -448,33 +450,33 @@
     </table>
     <table class="table_text" id="table_main_1" style="display: none;">
         <tr class="tr_border_bottom">
-            <th class="td_border_right aite_B text_center">售卖阶段</th>
+            <th class="td_border_right aite_B text_center">Selling stage</th>
             <th id="th_5" colspan="2" class="td_border_right text_center">
-                打探售卖定价
+                Inquire about sales pricing
             </th>
             <th id="th_7" colspan="2" class="">
-                推荐定价和预计收益
+                Recommended pricing and estimated revenue
             </th>
         </tr>
         <tr>
             <td class="td_border_right"></td>
-            <td id="td_0_5" class="aite_A">对手A（钟表图标）</td>
-            <td id="td_0_6" class="td_border_right">对手B</td>
+            <td id="td_0_5" class="aite_A">Opponent A(clock icon)</td>
+            <td id="td_0_6" class="td_border_right">Opponent B</td>
         </tr>
         <tr>
-            <th class="td_border_right tr_border_bottom">饮品</th>
+            <th class="td_border_right tr_border_bottom">Drink</th>
             <td id="td_1_5"><input type="number" id="drink_dt_0" min="0" value="0"></td>
             <td id="td_1_6" class="td_border_right"><input type="number" id="drink_dt_1" min="0" value="0"></td>
             <td colspan="2" id="td_1_7"></td>
         </tr>
         <tr>
-            <th class="td_border_right tr_border_bottom">食品</th>
+            <th class="td_border_right tr_border_bottom">Food</th>
             <td id="td_2_5"><input type="number" id="food_dt_0" min="0" value="0"></td>
             <td id="td_2_6" class="td_border_right"><input type="number" id="food_dt_1" min="0" value="0"></td>
             <td id="td_2_7" colspan="2" id="td_2_7"></td>
         </tr>
         <tr class="tr_border_bottom">
-            <th class="td_border_right">纪念品</th>
+            <th class="td_border_right">Souvenir</th>
             <td id="td_3_5"><input type="number" id="toy_dt_0" min="0" value="0"></td>
             <td id="td_3_6" class="td_border_right"></td>
             <td id="td_3_7" colspan="2" id="td_3_7"></td>
@@ -482,16 +484,16 @@
     </table>
     <table class="table_text" id="table_main_2">
         <tr class="tr_border_bottom">
-            <th class="td_border_right" style="font-size: 2em; font-weight: bold;">剩余打探次数</th>
+            <th class="td_border_right" style="font-size: 2em; font-weight: bold;">Inquiries remaining</th>
             <td id="td_4_1" colspan="1" class=""><input type="number" id="detect" min="0" value="6"  style="font-size: 2em; font-weight: bold;"></td>
             <td id="td_4_2"></td>
             <td id="td_4_3" colspan="2" rowspan="1">
-                <div class="div_button" onclick="first_phase_greedy();">贪心算法判断进货策略</div>
+                <div class="div_button" onclick="first_phase_greedy();">Get Purchasing Strategy</div>
             </td>
         </tr>
         <tr class="tr_border_bottom">
             <td colspan="5" id="L8">
-                请填写商品总量和剩余打探次数，然后点击“贪心算法判断进货策略”<br>
+                Please fill in the total quantity of goods and the remaining number of inquiries, and then click "Get Purchasing Strategy"<br>
                 <!-- <span><b>2023/08/21 总之提醒一下今天是活动最后一天，请根据纪念品库存自行判断是否需要保守进货清仓大甩卖</b></span> -->
             </td>
         </tr>
