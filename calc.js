@@ -157,14 +157,36 @@ let TEXT = {
 }
 
 let strattoint = {
-    "激进": 2,
-    "稳健": 1,
-    "保守": 0,
-    "": -1,
-    3: "",
-    2: "激进",
-    1: "稳健",
-    0: "保守",
+    'zh-CN': {
+        "激进": 2,
+        "稳健": 1,
+        "保守": 0,
+        "": -1,
+        3: "",
+        2: "激进",
+        1: "稳健",
+        0: "保守",
+    },
+    'ja': {
+        "強気": 2,
+        "慎重": 1,
+        "穏健": 0,
+        "": -1,
+        3: "",
+        2: "強気",
+        1: "慎重",
+        0: "穏健",
+    },
+    'en': {
+        "Radical": 2,
+        "Steady": 1,
+        "Conservative": 0,
+        "": -1,
+        3: "",
+        2: "Radical",
+        1: "Steady",
+        0: "Conservative",
+    },
 }
 let last_toggle = 0;
 let drink_buyin = [20, 28, 38]
@@ -1114,22 +1136,22 @@ function switch_table() {
     <tr>
         <td class="td_border_right">${get_text('drink')}</tb>
         <td>${document.getElementById('drink_total').value}</tb>
-        <td>${strattoint[document.getElementById('drink_strat_0').value]} ${document.getElementById('drink_stock_0').innerHTML}</tb>
-        <td>${strattoint[document.getElementById('drink_strat_1').value]} ${document.getElementById('drink_stock_1').innerHTML}</tb>
-        <td>${strattoint[document.getElementById('drink_strat_2').value]} ${document.getElementById('drink_stock_2').innerHTML}</tb>
+        <td>${strattoint[LG][document.getElementById('drink_strat_0').value]} ${document.getElementById('drink_stock_0').innerHTML}</tb>
+        <td>${strattoint[LG][document.getElementById('drink_strat_1').value]} ${document.getElementById('drink_stock_1').innerHTML}</tb>
+        <td>${strattoint[LG][document.getElementById('drink_strat_2').value]} ${document.getElementById('drink_stock_2').innerHTML}</tb>
     </tr>
     <tr>
         <td class="td_border_right">${get_text('food')}</tb>
         <td>${document.getElementById('food_total').value}</tb>
-        <td>${strattoint[document.getElementById('food_strat_0').value]} ${document.getElementById('food_stock_0').innerHTML}</tb>
-        <td>${strattoint[document.getElementById('food_strat_1').value]} ${document.getElementById('food_stock_1').innerHTML}</tb>
-        <td>${strattoint[document.getElementById('food_strat_2').value]} ${document.getElementById('food_stock_2').innerHTML}</tb>
+        <td>${strattoint[LG][document.getElementById('food_strat_0').value]} ${document.getElementById('food_stock_0').innerHTML}</tb>
+        <td>${strattoint[LG][document.getElementById('food_strat_1').value]} ${document.getElementById('food_stock_1').innerHTML}</tb>
+        <td>${strattoint[LG][document.getElementById('food_strat_2').value]} ${document.getElementById('food_stock_2').innerHTML}</tb>
     </tr>
     <tr>
         <td class="td_border_right">${get_text('toy')}</tb>
         <td>${document.getElementById('toy_total').value}</tb>
-        <td>${strattoint[document.getElementById('toy_strat_0').value]} ${document.getElementById('toy_stock_0').innerHTML}</tb>
-        <td>${strattoint[document.getElementById('toy_strat_1').value]} ${document.getElementById('toy_stock_1').innerHTML}</tb>
+        <td>${strattoint[LG][document.getElementById('toy_strat_0').value]} ${document.getElementById('toy_stock_0').innerHTML}</tb>
+        <td>${strattoint[LG][document.getElementById('toy_strat_1').value]} ${document.getElementById('toy_stock_1').innerHTML}</tb>
     </tr>
     `
 
