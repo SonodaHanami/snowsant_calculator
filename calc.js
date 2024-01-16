@@ -50,7 +50,7 @@ let TEXT = {
         'en': 'The result will be here',
     },
     'all_strat_needed': {
-        'zh-CN': '必须填写完所有对手策略',
+        'zh-CN': '请填写完所有对手的所有策略',
         'ja': 'すべての相手のすべての策略を入力してください',
         'en': 'You have to enter all strategies of all opponents',
     },
@@ -1124,7 +1124,7 @@ function reset_td_class() {
 function switch_table() {
     document.getElementById('table_main_0').style.display = 'none'
     document.getElementById('table_main_1').style.display = ''
-    document.getElementById('td_4_3').innerHTML = `<div class="div_button" onclick="calculate();">${get_text('check_ok')}</div>`
+    document.getElementById('td_4_3').innerHTML = `<div class="div_button" onclick="calculate();">${get_text('calculation_start')}</div>`
     document.getElementById('table_main_3').innerHTML = `
     <tr class="tr_border_bottom">
         <th class="td_border_right">${get_text('purchasing_stage_summary')}</th>
