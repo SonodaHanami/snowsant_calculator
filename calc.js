@@ -21,7 +21,7 @@ let TEXT = {
     },
     'snowsant': {
         'zh-CN': '雪雉',
-        'ja': 'スノーザント',
+        'ja': 'スノーズント',
         'en': 'Snowsant',
     },
     'opponent': {
