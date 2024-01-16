@@ -6,17 +6,17 @@ const LG = file_name == 'ja.html' ? 'ja' : file_name == 'en.html' ? 'en' : 'zh-C
 let TEXT = {
     'drink': {
         'zh-CN': '饮品',
-        'ja': '飲み物',
+        'ja': 'ドリンク',
         'en': 'Drinks',
     },
     'food': {
         'zh-CN': '食品',
-        'ja': '食べ物',
+        'ja': 'フード',
         'en': 'Food',
     },
     'toy': {
         'zh-CN': '纪念品',
-        'ja': '記念品',
+        'ja': 'ギフト',
         'en': 'Souvenirs',
     },
     'snowsant': {
@@ -86,42 +86,42 @@ let TEXT = {
     },
     'set_drink_price': {
         'zh-CN': '请给饮品定价并售卖，然后点击“开始计算”进入下一步',
-        'ja': '飲み物に値段を付けて販売して、“計算開始”をクリックしてください',
+        'ja': 'ドリンクに値段を付けて販売して、“計算開始”をクリックしてください',
         'en': 'Please price the drinks and sell them, then click "Calculation start"',
     },
     'set_food_price': {
         'zh-CN': '请给食品定价并售卖，然后点击“开始计算”进入下一步',
-        'ja': '食べ物に値段を付けて販売、“計算開始”をクリックしてください',
+        'ja': 'フードに値段を付けて販売、“計算開始”をクリックしてください',
         'en': 'Please price the food and sell them, then click "Calculation start"',
     },
     'ask_drink_price': {
         'zh-CN': '请打探一次饮品售价并在输入框中输入，然后点击“开始计算”',
-        'ja': '飲み物の価格を一回問い合わせて入力して、“計算開始”をクリックしてください',
+        'ja': 'ドリンクの価格を一回問い合わせて入力して、“計算開始”をクリックしてください',
         'en': 'Please ask the price of the drinks for one time and enter it, then click "Calculation start"',
     },
     'ask_drink_price_2': {
         'zh-CN': '请<span><b>再</b></span>打探一次饮品售价并在输入框中输入，然后点击“开始计算”',
-        'ja': '飲み物の価格を<span><b>もう一回</b></span>問い合わせて入力して、“計算開始”をクリックしてください',
+        'ja': 'ドリンクの価格を<span><b>もう一回</b></span>問い合わせて入力して、“計算開始”をクリックしてください',
         'en': 'Please ask the price of the drinks for </b></span>one more time</b></span> and enter it, then click "Calculation start"',
     },
     'ask_food_price': {
         'zh-CN': '请打探一次食品售价并在输入框中输入，然后点击“开始计算”',
-        'ja': '食べ物の価格を一回問い合わせて入力して、“計算開始”をクリックしてください',
+        'ja': 'フードの価格を一回問い合わせて入力して、“計算開始”をクリックしてください',
         'en': 'Please ask the price of the food for one time and enter it, then click "Calculation start"',
     },
     'ask_food_price_2': {
         'zh-CN': '请<span><b>再</b></span>打探一次食品售价并在输入框中输入，然后点击“开始计算”',
-        'ja': '食べ物の価格を<span><b>もう一回</b></span>問い合わせて入力して、“計算開始”をクリックしてください',
+        'ja': 'フードの価格を<span><b>もう一回</b></span>問い合わせて入力して、“計算開始”をクリックしてください',
         'en': 'Please ask the price of the food for </b></span>one more time</b></span> and enter it, then click "Calculation start"',
     },
     'ask_toy_price': {
         'zh-CN': '请打探一次纪念品售价并在输入框中输入，然后点击“开始计算”',
-        'ja': '記念品の価格を一回問い合わせて入力して、“計算開始”をクリックしてください',
+        'ja': 'ギフトの価格を一回問い合わせて入力して、“計算開始”をクリックしてください',
         'en': 'Please ask the price of the souvenirs for one time and enter it, then click "Calculation start"',
     },
     'ask_price_result': {
         'zh-CN': '打探 __ASK_DRINK__ 次饮品进货，打探 __ASK_FOOD__ 次食品进货，打探 __ASK_TOY__ 次纪念品进货，然后输入打探结果并再次点击此按钮',
-        'ja': '飲み物 __ASK_DRINK__ 回、食べ物 __ASK_FOOD__ 回、記念品 __ASK_TOY__ 回を問い合わせて、結果を入力して、もう一度ボタンをクリックしてください',
+        'ja': 'ドリンク __ASK_DRINK__ 回、フード __ASK_FOOD__ 回、ギフト __ASK_TOY__ 回を問い合わせて、結果を入力して、もう一度ボタンをクリックしてください',
         'en': 'Please ask __ASK_DRINK__ time(s) for drinks, __ASK_FOOD__ time(s) for food and __ASK_TOY__ time(s) for souvenirs, input the asking result, and then click the button once more',
     },
     'set_price': {
@@ -141,7 +141,7 @@ let TEXT = {
     },
     'toy_dumping_ok': {
         'zh-CN': '若有积压纪念品，可以适当减价10抛售',
-        'ja': '記念品が余っている場合は、適当に10の割引で販売できます',
+        'ja': 'ギフトが余っている場合は、適当に10の割引で販売できます',
         'en': 'If you have a backlog of souvenirs, you can sell them off at a discount of 10',
     },
     'calculation_completed': {
