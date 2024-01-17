@@ -7,7 +7,7 @@ let TEXT = {
     'drink': {
         'zh-CN': '饮品',
         'ja': 'ドリンク',
-        'en': 'Drinks',
+        'en': 'Drink',
     },
     'food': {
         'zh-CN': '食品',
@@ -17,17 +17,17 @@ let TEXT = {
     'toy': {
         'zh-CN': '纪念品',
         'ja': 'ギフト',
-        'en': 'Souvenirs',
+        'en': 'Gift',
     },
     'snowsant': {
         'zh-CN': '雪雉',
         'ja': 'スノーズント',
         'en': 'Snowsant',
     },
-    'opponent': {
+    'rival': {
         'zh-CN': '对手',
         'ja': '相手',
-        'en': 'Opponent',
+        'en': 'Rival',
     },
     'total': {
         'zh-CN': '总量',
@@ -52,7 +52,7 @@ let TEXT = {
     'all_strat_needed': {
         'zh-CN': '请填写完所有对手的所有策略',
         'ja': 'すべての相手のすべての策略を入力してください',
-        'en': 'You have to enter all strategies of all opponents',
+        'en': 'You have to enter all strategies of all rivals',
     },
     'illegal_data': {
         'zh-CN': '数据异常，请检查定价是否填写错误',
@@ -69,25 +69,25 @@ let TEXT = {
         'ja': '計算開始',
         'en': 'Calculation start',
     },
-    'calculate_purchase_quantity_and_check': {
+    'calculate_buying_quantity_and_check': {
         'zh-CN': '计算进货数量并比对',
         'ja': '購入数量を計算&確認',
-        'en': 'Calculate and confirm the purchase quantity',
+        'en': 'Calculate and confirm the buying quantity',
     },
-    'purchase_quantity_calculated': {
+    'buying_quantity_calculated': {
         'zh-CN': '进货数量计算完毕，请比对是否与游戏中显示一致，然后可以开始计算。',
         'ja': '購入数量計算完了、ゲーム内の表示と一致しているか確認してから計算開始してください。',
-        'en': 'The purchase quantity has been calculated. Please check whether it is consistent with the display in the game, and then start the calculation.',
+        'en': 'The buying quantity has been calculated. Please check whether it is consistent with the display in the game, and then start the calculation.',
     },
-    'purchase_strategy_calculated': {
+    'buying_strategy_calculated': {
         'zh-CN': '进货策略计算完毕，请按提示进货<span>（注意<b>不要手滑</b>点掉进货结果界面，总之先<b>截个图</b>吧）</span>，然后补全其他对手的进货策略，再计算进货数量并比对',
         'ja': '購入策略計算完了、結果通りに購入してください。（購入結果の画面は<b>再表示できない</b>ので，とりあえず<b>スクリーンショット</b>しよう）他の相手の購入策略も入力し、購入数量を計算して確認してください',
-        'en': 'The purchase strategy has been calculated. (The purchase result screen <b>cannot be displayed again</b>, so let\'s <b>take a screenshot</b> for now.) Please also enter other opponents\' purchase strategies and calculate and confirm the purchase quantity.',
+        'en': 'The buying strategy has been calculated. (The buying result screen <b>cannot be displayed again</b>, so let\'s <b>take a screenshot</b> for now.) Please also enter other rivals\' buying strategies and calculate and confirm the buying quantity.',
     },
     'set_drink_price': {
         'zh-CN': '请给饮品定价并售卖，然后点击“开始计算”进入下一步',
         'ja': 'ドリンクに値段を付けて販売して、“計算開始”をクリックしてください',
-        'en': 'Please price the drinks and sell them, then click "Calculation start"',
+        'en': 'Please price the Drink and sell them, then click "Calculation start"',
     },
     'set_food_price': {
         'zh-CN': '请给食品定价并售卖，然后点击“开始计算”进入下一步',
@@ -97,12 +97,12 @@ let TEXT = {
     'ask_drink_price': {
         'zh-CN': '请打探一次饮品售价并在输入框中输入，然后点击“开始计算”',
         'ja': 'ドリンクの価格を一回問い合わせて入力して、“計算開始”をクリックしてください',
-        'en': 'Please ask the price of the drinks for one time and enter it, then click "Calculation start"',
+        'en': 'Please ask the price of the Drink for one time and enter it, then click "Calculation start"',
     },
     'ask_drink_price_2': {
         'zh-CN': '请<span><b>再</b></span>打探一次饮品售价并在输入框中输入，然后点击“开始计算”',
         'ja': 'ドリンクの価格を<span><b>もう一回</b></span>問い合わせて入力して、“計算開始”をクリックしてください',
-        'en': 'Please ask the price of the drinks for </b></span>one more time</b></span> and enter it, then click "Calculation start"',
+        'en': 'Please ask the price of the Drink for </b></span>one more time</b></span> and enter it, then click "Calculation start"',
     },
     'ask_food_price': {
         'zh-CN': '请打探一次食品售价并在输入框中输入，然后点击“开始计算”',
@@ -117,37 +117,37 @@ let TEXT = {
     'ask_toy_price': {
         'zh-CN': '请打探一次纪念品售价并在输入框中输入，然后点击“开始计算”',
         'ja': 'ギフトの価格を一回問い合わせて入力して、“計算開始”をクリックしてください',
-        'en': 'Please ask the price of the souvenirs for one time and enter it, then click "Calculation start"',
+        'en': 'Please ask the price of the Gift for one time and enter it, then click "Calculation start"',
     },
     'ask_price_result': {
         'zh-CN': '打探 __ASK_DRINK__ 次饮品进货，打探 __ASK_FOOD__ 次食品进货，打探 __ASK_TOY__ 次纪念品进货，然后输入打探结果并再次点击此按钮',
         'ja': 'ドリンク __ASK_DRINK__ 回、フード __ASK_FOOD__ 回、ギフト __ASK_TOY__ 回を問い合わせて、結果を入力して、もう一度ボタンをクリックしてください',
-        'en': 'Please ask __ASK_DRINK__ time(s) for drinks, __ASK_FOOD__ time(s) for food and __ASK_TOY__ time(s) for souvenirs, input the asking result, and then click the button once more',
+        'en': 'Please ask __ASK_DRINK__ time(s) for Drink, __ASK_FOOD__ time(s) for food and __ASK_TOY__ time(s) for Gift, input the asking result, and then click the button once more',
     },
     'set_price': {
         'zh-CN': '定价',
         'ja': '定価',
-        'en': 'Set price',
+        'en': 'Set price ',
     },
     'estimated_revenue_is': {
         'zh-CN': '预计收益为',
         'ja': '推定収益は',
-        'en': 'the estimated revenue is',
+        'en': 'the estimated revenue is ',
     },
-    'purchasing_stage_summary': {
+    'buying_phase_summary': {
         'zh-CN': '进货阶段总结',
-        'ja': '購入ステージの概要',
-        'en': 'Purchasing stage summary',
+        'ja': '購入段階の概要',
+        'en': 'Buying phase summary',
     },
     'toy_dumping_ok': {
         'zh-CN': '若有积压纪念品，可以适当减价10抛售',
         'ja': 'ギフトが余っている場合は、適当に10の割引で販売できます',
-        'en': 'If you have a backlog of souvenirs, you can sell them off at a discount of 10',
+        'en': 'If you have a backlog of Gift, you can sell them off at a discount of 10',
     },
     'calculation_completed': {
         'zh-CN': '计算完成！享受你的收益吧！',
         'ja': '計算完了！利益を楽しみましょう！',
-        'en': 'Calculation completed! Enjoy your revenue~',
+        'en': 'Calculation completed! Enjoy your profit~',
     },
     'no_cost_calculation': {
         'zh-CN': '（没有计算成本）',
@@ -883,7 +883,7 @@ function cal_jinhuo() {
         document.getElementById(`toy_stock_0`).innerHTML = total_goods * 0.4
     }
     document.getElementById('td_4_3').innerHTML = `<div class="div_button" onclick="switch_table(); calculate();">${get_text('check_ok')}</div>`
-    document.getElementById('L8').innerHTML = get_text('purchase_quantity_calculated')
+    document.getElementById('L8').innerHTML = get_text('buying_quantity_calculated')
     // 高亮
     reset_td_class()
     document.getElementById(`td_1_2`).classList.add('current_step')
@@ -934,12 +934,12 @@ function determine_input_strategy(detects=0) {
     else {
         document.getElementById('toy_strat_0').value = 2
     }
-    document.getElementById('L8').innerHTML = get_text('purchase_strategy_calculated')
+    document.getElementById('L8').innerHTML = get_text('buying_strategy_calculated')
     document.getElementById(`td_1_2`).classList.add('current_step')
     document.getElementById(`td_2_2`).classList.add('current_step')
     document.getElementById(`td_3_2`).classList.add('current_step')
     document.getElementById(`td_4_3`).classList.add('current_step')
-    document.getElementById(`td_4_3`).innerHTML = `<div class="div_button" onclick="cal_jinhuo();">${get_text('calculate_purchase_quantity_and_check')}</div>`
+    document.getElementById(`td_4_3`).innerHTML = `<div class="div_button" onclick="cal_jinhuo();">${get_text('calculate_buying_quantity_and_check')}</div>`
     return
 }
 
@@ -1127,11 +1127,11 @@ function switch_table() {
     document.getElementById('td_4_3').innerHTML = `<div class="div_button" onclick="calculate();">${get_text('calculation_start')}</div>`
     document.getElementById('table_main_3').innerHTML = `
     <tr class="tr_border_bottom">
-        <th class="td_border_right">${get_text('purchasing_stage_summary')}</th>
+        <th class="td_border_right">${get_text('buying_phase_summary')}</th>
         <td>${get_text('total')}</tb>
         <td>${get_text('snowsant')}</tb>
-        <td>${get_text('opponent')}A</tb>
-        <td>${get_text('opponent')}B</tb>
+        <td>${get_text('rival')}A</tb>
+        <td>${get_text('rival')}B</tb>
     </tr>
     <tr>
         <td class="td_border_right">${get_text('drink')}</tb>
