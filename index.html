@@ -1,6 +1,6 @@
 <html>
 <head>
-    <title>雪雉小店终极策略</title>
+    <title>雪雉计算器</title>
     <style>
         body {
             padding-top: 10px;
@@ -253,6 +253,12 @@
             opacity: 1;
             background-color: #2B666666;
         }
+
+        #span_subtitle {
+            font-size: 0.5em;
+            color: #2226;
+            user-select: none;
+        }
     </style>
     <script src="./calc.js"></script>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-QGM58QCD7C"></script>
@@ -268,7 +274,10 @@
     <table class="table_header">
         <tr>
             <th colspan="3">
-                雪雉小店终极策略
+                <div id="div_title" class="elm_outline elm_white">
+                    <span id="span_title">雪雉计算器</span>
+                    <span id="span_subtitle">雪雉小店终极策略</span>
+                </div>
             </th>
             <td>
                 <div class="div_button" id="div_settings" onclick="handle_button_settings();">设置</div>
