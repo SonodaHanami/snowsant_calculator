@@ -288,35 +288,55 @@
         </tr>
     </table>
     <table class="table_text" id="table_settings" style="display: none;">
-        <tr>
+        <tr class="tr_border_bottom">
             <th>設定です</td>
         </tr>
-        <tr>
+        <tr class="tr_border_bottom">
             <td>言語</td>
-            <td>
+            <td colspan="4">
                 日本語 / <a href="./index.html" target="_self">中文</a> / <a href="./en.html" target="_self">English</a>
             </td>
         </tr>
         <tr>
+            <td rowspan="2">商品セット</td>
+            <td>
+                <div class="div_button" onclick="handle_product_set(0);">セット1（初期状態）</div>
+            </td>
+            <td>
+                <div class="div_button" onclick="handle_product_set(1);">セット2（4日目以降 かつ SL-5クリア後）</div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="div_button" onclick="handle_product_set(2);">セット3（9日目以降 かつ SL-EX-1クリア後）</div>
+            </td>
+            <td>
+                <div class="div_button" onclick="handle_product_set(3);">セット4（12日目以降 かつ SL-EX-5クリア後）</div>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="5">現在の商品セットはセット<span id="products_set_id_0">1</span>。下記の数値は商品セットによって自動的に変更します。</td>
+        </tr>
+        <tr>
             <td>ドリンクの価格の範囲</td>
-            <td><input type="number" id="drink_fw_0" min="0" value="45"></td>
-            <td class=""><input type="number" id="drink_fw_1" min="0" value="55"></td>
+            <td><input type="number" id="drink_fw_0" min="0" value="45" disabled></td>
+            <td><input type="number" id="drink_fw_1" min="0" value="55" disabled></td>
         </tr>
         <tr>
             <td>フードの価格の範囲</td>
-            <td><input type="number" id="food_fw_0" min="0" value="35"></td>
-            <td class=""><input type="number" id="food_fw_1" min="0" value="45"></td>
+            <td><input type="number" id="food_fw_0" min="0" value="35" disabled></td>
+            <td><input type="number" id="food_fw_1" min="0" value="45" disabled></td>
         </tr>
         <tr>
             <td>ギフトの価格の範囲</td>
-            <td><input type="number" id="toy_fw_0" min="0" value="950"></td>
-            <td class=""><input type="number" id="toy_fw_1" min="0" value="1050"></td>
+            <td><input type="number" id="toy_fw_0" min="0" value="950" disabled></td>
+            <td><input type="number" id="toy_fw_1" min="0" value="1050" disabled></td>
         </tr>
         <tr class="tr_border_bottom">
             <td class="">売上ランキング報酬</td>
-            <td class=""><input type="number" id="bonus_1" min="0" value="5000"></td>
-            <td class=""><input type="number" id="bonus_2" min="0" value="2000"></td>
-            <td class=""><input type="number" id="bonus_3" min="0" value="1000"></td>
+            <td class=""><input type="number" id="bonus_1" min="0" value="5000" disabled></td>
+            <td class=""><input type="number" id="bonus_2" min="0" value="2000" disabled></td>
+            <td class=""><input type="number" id="bonus_3" min="0" value="1000" disabled></td>
         </tr>
     </table>
     <table class="table_text">
@@ -346,6 +366,11 @@
             </td>
             <td colspan="1" class="">
                 <a href="./help.html" target="_blank">説明書</a>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="5" id="td_notice_3" class="">
+                現在の商品セットはセット<span id="products_set_id_1">1</span>。<span>設定</span>で変更できます。
             </td>
         </tr>
     </table>

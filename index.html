@@ -288,35 +288,55 @@
         </tr>
     </table>
     <table class="table_text" id="table_settings" style="display: none;">
-        <tr>
+        <tr class="tr_border_bottom">
             <th>这是设置</td>
         </tr>
-        <tr>
+        <tr class="tr_border_bottom">
             <td>语言</td>
-            <td>
+            <td colspan="4">
                 中文 / <a href="./ja.html" target="_self">日本語</a> / <a href="./en.html" target="_self">English</a>
             </td>
         </tr>
         <tr>
+            <td rowspan="2">切换商品组合</td>
+            <td>
+                <div class="div_button" onclick="handle_product_set(0);">第1组（初始解锁）</div>
+            </td>
+            <td>
+                <div class="div_button" onclick="handle_product_set(1);">第2组（第4天上市 通关SL-5解锁）</div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="div_button" onclick="handle_product_set(2);">第3组（第9天上市 通关SL-EX-1解锁）</div>
+            </td>
+            <td>
+                <div class="div_button" onclick="handle_product_set(3);">第4组（第12天上市 通关SL-EX-5解锁）</div>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="5">当前商品组合为第<span id="products_set_id_0">1</span>组。以下数值会在随着商品组合自动切换，无需手动更改。</td>
+        </tr>
+        <tr>
             <td>饮品定价范围</td>
-            <td><input type="number" id="drink_fw_0" min="0" value="45"></td>
-            <td class=""><input type="number" id="drink_fw_1" min="0" value="55"></td>
+            <td><input type="number" id="drink_fw_0" min="0" value="45" disabled></td>
+            <td><input type="number" id="drink_fw_1" min="0" value="55" disabled></td>
         </tr>
         <tr>
             <td>食品定价范围</td>
-            <td><input type="number" id="food_fw_0" min="0" value="35"></td>
-            <td class=""><input type="number" id="food_fw_1" min="0" value="45"></td>
+            <td><input type="number" id="food_fw_0" min="0" value="35" disabled></td>
+            <td><input type="number" id="food_fw_1" min="0" value="45" disabled></td>
         </tr>
         <tr>
             <td>纪念品定价范围</td>
-            <td><input type="number" id="toy_fw_0" min="0" value="950"></td>
-            <td class=""><input type="number" id="toy_fw_1" min="0" value="1050"></td>
+            <td><input type="number" id="toy_fw_0" min="0" value="950" disabled></td>
+            <td><input type="number" id="toy_fw_1" min="0" value="1050" disabled></td>
         </tr>
         <tr class="tr_border_bottom">
             <td class="">销售名次奖励</td>
-            <td class=""><input type="number" id="bonus_1" min="0" value="5000"></td>
-            <td class=""><input type="number" id="bonus_2" min="0" value="2000"></td>
-            <td class=""><input type="number" id="bonus_3" min="0" value="1000"></td>
+            <td class=""><input type="number" id="bonus_1" min="0" value="5000" disabled></td>
+            <td class=""><input type="number" id="bonus_2" min="0" value="2000" disabled></td>
+            <td class=""><input type="number" id="bonus_3" min="0" value="1000" disabled></td>
         </tr>
     </table>
     <table class="table_text">
@@ -346,6 +366,11 @@
                 <a href="./help.html" target="_blank">查看说明书</a>
             </td>
         </tr>
+        <tr>
+            <td colspan="5" id="td_notice_3" class="">
+                当前商品为第<span id="products_set_id_1">1</span>组。本页面（中文版）正在对日服时间轴自动切换商品，国际服博士请从<span>设置</span>切换到英文版或自行对轴切换商品。
+            </td>
+        </tr>
     </table>
     <table class="table_text" id="table_main_0">
         <tr class="tr_border_bottom">
@@ -357,7 +382,7 @@
         <tr>
             <td class="td_border_right"></td>
             <td id="td_0_1">总量</td>
-            <td id="td_0_2">自己</td>
+            <td id="td_0_2">雪雉</td>
             <td id="td_0_3" class="aite_A">对手A（钟表图标）</td>
             <td id="td_0_4" class="">对手B</td>
         </tr>

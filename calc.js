@@ -192,6 +192,42 @@ let last_toggle = 0;
 let drink_buyin = [20, 28, 38]
 let food_buyin = [10, 20, 32]
 let toy_buyin = [50, 100, 200]
+let product_set_info = [
+    {
+        'drink_buyin': [20, 28, 38],
+        'food_buyin': [10, 20, 32],
+        'drink_fw_0': 45,
+        'drink_fw_1': 55,
+        'food_fw_0': 35,
+        'food_fw_1': 45,
+    },
+    {
+        'drink_buyin': [30, 42, 57],
+        'food_buyin': [15, 30, 48],
+        'drink_fw_0': 95,
+        'drink_fw_1': 105,
+        'food_fw_0': 75,
+        'food_fw_1': 85,
+    },
+    {
+        'drink_buyin': [40, 56, 76],
+        'food_buyin': [20, 40, 64],
+        'drink_fw_0': 195,
+        'drink_fw_1': 205,
+        'food_fw_0': 155,
+        'food_fw_1': 165,
+    },
+    {
+        'drink_buyin': [50, 70, 95],
+        'food_buyin': [25, 50, 80],
+        'drink_fw_0': 245,
+        'drink_fw_1': 255,
+        'food_fw_0': 195,
+        'food_fw_1': 205,
+    }
+]
+
+
 
 let N = 0
 let C = 0
@@ -1157,30 +1193,31 @@ function switch_table() {
 
 }
 
+function handle_product_set(set_id) {
+    drink_buyin = product_set_info[set_id]['drink_buyin']
+    food_buyin = product_set_info[set_id]['food_buyin']
+    document.getElementById('drink_fw_0').value = product_set_info[set_id]['drink_fw_0']
+    document.getElementById('drink_fw_1').value = product_set_info[set_id]['drink_fw_1']
+    document.getElementById('food_fw_0').value = product_set_info[set_id]['food_fw_0']
+    document.getElementById('food_fw_1').value = product_set_info[set_id]['food_fw_1']
+
+    document.getElementById('products_set_id_0').innerHTML = set_id + 1
+    document.getElementById('products_set_id_1').innerHTML = set_id + 1
+}
+
 function update_settings() {
     let t = +new Date()
-    if (t > 1705604400000) {
-        drink_buyin = [30, 42, 57]
-        food_buyin = [15, 30, 48]
-        document.getElementById('drink_fw_0').value = 95
-        document.getElementById('drink_fw_1').value = 105
-        document.getElementById('food_fw_0').value = 75
-        document.getElementById('food_fw_1').value = 85
+    let products_release = [0, 1705604400000, 1706036400000, 1706295600000]
+    if (LG == 'en') {
+        products_release = [0, 1705662000000, 1706094000000, 1706353200000]
     }
-    if (t > 1706036400000) {
-        drink_buyin = [40, 56, 76]
-        food_buyin = [20, 40, 64]
-        document.getElementById('drink_fw_0').value = 195
-        document.getElementById('drink_fw_1').value = 205
-        document.getElementById('food_fw_0').value = 155
-        document.getElementById('food_fw_1').value = 165
+    if (t > products_release[1]) {
+        handle_product_set(1)
     }
-    if (t > 1706295600000) {
-        drink_buyin = [50, 70, 95]
-        food_buyin = [25, 50, 80]
-        document.getElementById('drink_fw_0').value = 245
-        document.getElementById('drink_fw_1').value = 255
-        document.getElementById('food_fw_0').value = 195
-        document.getElementById('food_fw_1').value = 205
+    if (t > products_release[2]) {
+        handle_product_set(2)
+    }
+    if (t > products_release[3]) {
+        handle_product_set(3)
     }
 }
