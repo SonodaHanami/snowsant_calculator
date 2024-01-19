@@ -727,7 +727,7 @@ function calculate() {
                     }
                 }
                 else {
-                    txt_big = get_text('ask_food_price')
+                    txt_big = get_text('set_food_price')
                     txt = `${get_text('set_price')}${best_food[0]}，${get_text('estimated_revenue_is')}${best_food[1]}`
                     document.getElementById('td_2_7').innerHTML = txt
                     document.getElementById(`td_2_7`).classList.add('current_step')
