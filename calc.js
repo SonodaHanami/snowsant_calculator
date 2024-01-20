@@ -140,9 +140,12 @@ let TEXT = {
         'en': 'Buying phase summary',
     },
     'toy_dumping_ok': {
-        'zh-CN': '若有积压纪念品，可以适当减价10抛售',
-        'ja': 'ギフトが余っている場合は、適当に10の割引で販売できます',
-        'en': 'If you have a backlog of Gift, you can sell them off at a discount of 10',
+        // 'zh-CN': '若有积压纪念品，可以适当减价10抛售',
+        // 'ja': 'ギフトが余っている場合は、適当に10の割引で販売できます',
+        // 'en': 'If you have a backlog of Gift, you can sell them off at a discount of 10',
+        'zh-CN': '',
+        'ja': '',
+        'en': '',
     },
     'calculation_completed': {
         'zh-CN': '计算完成！享受你的收益吧！',
