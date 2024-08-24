@@ -1206,11 +1206,13 @@ function handle_product_set(set_id) {
 
     document.getElementById('products_set_id_0').innerHTML = set_id + 1
     document.getElementById('products_set_id_1').innerHTML = set_id + 1
+
+    document.getElementById('detect').value = set_id == 1 ? 5 : set_id >= 2 ? 6 : 4;
 }
 
 function update_settings() {
     let t = +new Date()
-    let products_release = [1705345200000, 1705604400000, 1706036400000, 1706295600000]
+    let products_release = [1724270400000, 1724443200000, 1724616000000, 1724788800000]
     if (LG == 'en') {
         products_release = [1705402800000, 1705662000000, 1706094000000, 1706353200000]
     }
