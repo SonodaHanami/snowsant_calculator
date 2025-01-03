@@ -1212,9 +1212,9 @@ function handle_product_set(set_id) {
 
 function update_settings() {
     let t = +new Date()
-    let products_release = [1724270400000, 1724443200000, 1724616000000, 1724788800000]
+    let products_release = [1735844400000, 1736017200000, 1736190000000, 1736362800000]
     if (LG == 'en') {
-        products_release = [1705402800000, 1705662000000, 1706094000000, 1706353200000]
+        products_release = [1735844400000, 1736017200000, 1736190000000, 1736362800000]
     }
     let day = Math.floor((t - products_release[0]) / 86400000) + 1
     document.getElementById('event_day').innerHTML = `[DAY ${day}]`
